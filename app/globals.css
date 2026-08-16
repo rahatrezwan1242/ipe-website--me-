@@ -1,0 +1,65 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+@custom-variant dark (&:is(.dark *));
+@theme inline {
+  --color-background: var(--background); --color-foreground: var(--foreground);
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+  --color-card: var(--card); --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover); --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary); --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary); --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted); --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent); --color-accent-foreground: var(--accent-foreground);
+  --color-border: var(--border); --color-input: var(--input); --color-ring: var(--ring);
+  --color-course-theory: var(--course-theory); --color-course-lab: var(--course-lab);
+  --color-course-major: var(--course-major); --color-course-misc: var(--course-misc);
+  --radius: .75rem;
+}
+/* Light is the CSS default (:root); .dark overrides. Toggled by components/theme-provider.tsx,
+   which also decides the class before first paint (see the inline script in app/layout.tsx) so
+   there's no flash of the wrong theme. Structural tones (background/card/border/muted/text) come
+   from a second reference photo the user shared for light mode specifically — a snowy lake, five
+   swatches light-to-dark; see project memory for the palette's origin. Accent hues (rose/blue/
+   purple — --accent, --course-*, --home-accent-*) stay the same across both themes on purpose:
+   they're a functional color-coding system (course types, buttons), not just decoration, and
+   shifting hue between themes would break the "rose = Theory" association users build up. */
+:root {
+  --background:#f0ecdd; --foreground:#02122f; --card:#ffffff; --card-foreground:#02122f;
+  --popover:#ffffff; --popover-foreground:#02122f; --primary:#02122f; --primary-foreground:#f0ecdd;
+  --secondary:#8ba3c5; --secondary-foreground:#02122f; --muted:#8ba3c5; --muted-foreground:#23354d;
+  --accent:#a8496b; --accent-foreground:#f9f4f6; --border:rgba(73,91,125,.16); --input:rgba(73,91,125,.2); --ring:#a8496b;
+  /* Course-type / metric identity colors — stable across pages regardless of the
+     scoped --accent above (see .curriculum-accent), so a "Theory" badge for example
+     never accidentally shifts hue just because it's rendered on /curriculum. */
+  --course-theory:#a8496b; --course-lab:#2f6aa8; --course-major:#6d4c85; --course-misc:#3f6289;
+  --home-bg-base:#f0ecdd; --home-bg-surface:#e8e2cd; --home-bg-card:#ffffff; --home-border:#495b7d;
+  --home-accent-teal:#2f6aa8; --home-accent-warm:#a8496b; --home-accent-purple:#6d4c85;
+  /* Darker text-only variants of accent-warm/purple — the plain accent hues read too faint as
+     small outline-button text against the light cream background; borders/fills keep the regular
+     accent hue, only text uses these. Dark mode's plain accents already contrast fine on the
+     near-black background, so those just alias back to the regular vars below. */
+  --home-accent-warm-text:#82304f; --home-accent-purple-text:#4f3660;
+  --home-text-primary:#02122f; --home-text-secondary:#23354d; --home-text-muted:#8ba3c5;
+}
+.dark {
+  --background:#080b14; --foreground:#eceaf2; --card:#0e1420; --card-foreground:#eceaf2;
+  --popover:#0e1420; --popover-foreground:#eceaf2; --primary:#eceaf2; --primary-foreground:#080b14;
+  --secondary:#141b2c; --secondary-foreground:#eceaf2; --muted:#141b2c; --muted-foreground:#8a90ab;
+  --accent:#c98fa0; --accent-foreground:#080b14; --border:rgba(255,255,255,.09); --input:rgba(255,255,255,.12); --ring:#c98fa0;
+  --course-theory:#c98fa0; --course-lab:#3d7dbf; --course-major:#8f6ba8; --course-misc:#5b7ba3;
+  --home-bg-base:#0a0f1c; --home-bg-surface:#0e1526; --home-bg-card:#131b30; --home-border:#26304a;
+  --home-accent-teal:#3d7dbf; --home-accent-warm:#c98fa0; --home-accent-purple:#8f6ba8;
+  --home-accent-warm-text:#c98fa0; --home-accent-purple-text:#8f6ba8;
+  --home-text-primary:#eae7f2; --home-text-secondary:#8b90ab; --home-text-muted:#4d5570;
+}
+/* Scoped to /curriculum only (see app/curriculum/page.tsx) — the palette's purple swatch, so the page reads as part of the same dusk system as the sitewide --accent rose without being identical to it. */
+.curriculum-accent { --accent:#6d4c85; --ring:#6d4c85; }
+.dark .curriculum-accent { --accent:#8f6ba8; --ring:#8f6ba8; }
+* { box-sizing:border-box; }
+html { scrollbar-width:thin; scrollbar-color:var(--accent) transparent; }
+body { margin:0; background:var(--background); color:var(--foreground); font-family:var(--font-inter),sans-serif; }
+::selection { background:var(--accent); color:var(--accent-foreground); }
+a { text-decoration:none; }
+.custom-cursor-active, .custom-cursor-active * { cursor:none !important; }

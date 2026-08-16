@@ -1,0 +1,895 @@
+{
+  "program": "B.Sc. in Industrial and Production Engineering (IPE)",
+  "total_core_credits": 153.25,
+  "optional_credits": 12.0,
+  "semesters": [
+    {
+      "name": "First Year · First Semester",
+      "total_credits": 21.75,
+      "courses": [
+        {
+          "code": "Math 4111",
+          "title": "Modeling with Calculus and ODE",
+          "credits": 3,
+          "course_type": "Theory",
+          "isMajor": false,
+          "content_summary": [
+            "Differential and integral calculus extended to ordinary differential equations and mathematical modeling of physical systems."
+          ],
+          "main_texts": []
+        },
+        {
+          "code": "Phy 4113",
+          "title": "Structure of Matter, Electricity, Magnetism and Modern Physics",
+          "credits": 3,
+          "course_type": "Theory",
+          "isMajor": false,
+          "content_summary": [
+            "Atomic and nuclear structure, electricity and magnetism fundamentals, and an introduction to modern physics."
+          ],
+          "main_texts": []
+        },
+        {
+          "code": "Chem 4115",
+          "title": "Physical and Inorganic Chemistry",
+          "credits": 3,
+          "course_type": "Theory",
+          "isMajor": false,
+          "content_summary": [
+            "Physical chemistry (thermodynamics, kinetics, electrochemistry) and inorganic chemistry relevant to engineering materials."
+          ],
+          "main_texts": []
+        },
+        {
+          "code": "IPE 4101",
+          "title": "Introduction to Industrial and Production Engineering",
+          "credits": 3,
+          "course_type": "Theory",
+          "isMajor": true,
+          "content_summary": [
+            "A first look at the IPE profession: manufacturing systems, production management, and where the discipline fits between engineering and management."
+          ],
+          "main_texts": []
+        },
+        {
+          "code": "IPE 4108",
+          "title": "Workshop Practice I",
+          "credits": 0.75,
+          "course_type": "Lab",
+          "isMajor": true,
+          "content_summary": [
+            "Hands-on practice with hand tools, fitting, carpentry, and basic bench work in the workshop."
+          ],
+          "main_texts": []
+        },
+        {
+          "code": "ME 4110",
+          "title": "Engineering Drawing",
+          "credits": 1.5,
+          "course_type": "Lab",
+          "isMajor": true,
+          "content_summary": [
+            "Orthographic and isometric projection, dimensioning, and technical drawing conventions used across engineering."
+          ],
+          "main_texts": []
+        },
+        {
+          "code": "ME 4151",
+          "title": "Statics and Dynamics",
+          "credits": 3,
+          "course_type": "Theory",
+          "isMajor": true,
+          "content_summary": [
+            "Forces, moments, and equilibrium of rigid bodies (statics), plus motion and forces in dynamic systems."
+          ],
+          "main_texts": []
+        },
+        {
+          "code": "ME 4152",
+          "title": "Statics and Dynamics Lab",
+          "credits": 0.75,
+          "course_type": "Lab",
+          "isMajor": true,
+          "content_summary": [
+            "Experiments verifying statics and dynamics principles — equilibrium, friction, and motion analysis."
+          ],
+          "main_texts": []
+        },
+        {
+          "code": "Hum 4112",
+          "title": "Arabic / English Language I",
+          "credits": 0.75,
+          "course_type": "Lab",
+          "isMajor": false,
+          "content_summary": [
+            "Language proficiency and communication practice (Arabic/English), building academic and professional communication skills."
+          ],
+          "main_texts": []
+        },
+        {
+          "code": "Hum 4117",
+          "title": "Islamic Culture and Professional Ethics",
+          "credits": 3,
+          "course_type": "Theory",
+          "isMajor": false,
+          "content_summary": [
+            "Islamic culture, ethics, and their application to professional and engineering conduct."
+          ],
+          "main_texts": []
+        }
+      ]
+    },
+    {
+      "name": "First Year · Second Semester",
+      "total_credits": 21.0,
+      "courses": [
+        {
+          "code": "Math 4211",
+          "title": "PDE, Special Functions, Laplace and Fourier Analysis",
+          "credits": 3,
+          "course_type": "Theory",
+          "isMajor": false,
+          "content_summary": [
+            "Partial differential equations, special functions, and Laplace/Fourier transform methods used throughout engineering analysis."
+          ],
+          "main_texts": []
+        },
+        {
+          "code": "Phy 4213",
+          "title": "Waves and Oscillation, Geometrical Optics and Wave Mechanics",
+          "credits": 3,
+          "course_type": "Theory",
+          "isMajor": false,
+          "content_summary": [
+            "Wave motion, oscillations, geometrical optics, and an introduction to wave mechanics."
+          ],
+          "main_texts": []
+        },
+        {
+          "code": "Phy 4214",
+          "title": "Physics Lab",
+          "credits": 0.75,
+          "course_type": "Lab",
+          "isMajor": false,
+          "content_summary": [
+            "Laboratory verification of oscillation, wave, and optics phenomena covered in theory."
+          ],
+          "main_texts": []
+        },
+        {
+          "code": "Chem 4215",
+          "title": "Chemistry of Engineering Materials",
+          "credits": 3,
+          "course_type": "Theory",
+          "isMajor": false,
+          "content_summary": [
+            "Structure, properties, and behavior of engineering materials from a chemistry perspective — polymers, metals, and composites."
+          ],
+          "main_texts": []
+        },
+        {
+          "code": "Chem 4216",
+          "title": "Chemistry Lab",
+          "credits": 0.75,
+          "course_type": "Lab",
+          "isMajor": false,
+          "content_summary": [
+            "Laboratory experiments on material composition, reactions, and properties."
+          ],
+          "main_texts": []
+        },
+        {
+          "code": "EEE 4281",
+          "title": "Electrical Circuits and Machines",
+          "credits": 3,
+          "course_type": "Theory",
+          "isMajor": true,
+          "content_summary": [
+            "Fundamentals of electrical circuits (DC/AC analysis) and an introduction to electrical machines."
+          ],
+          "main_texts": []
+        },
+        {
+          "code": "EEE 4282",
+          "title": "Electrical Circuits and Machines Lab",
+          "credits": 0.75,
+          "course_type": "Lab",
+          "isMajor": true,
+          "content_summary": [
+            "Circuit-building and machine experiments reinforcing the electrical circuits and machines theory."
+          ],
+          "main_texts": []
+        },
+        {
+          "code": "IPE 4208",
+          "title": "Workshop Practice II",
+          "credits": 1.5,
+          "course_type": "Lab",
+          "isMajor": true,
+          "content_summary": [
+            "Machine-shop practice — turning, drilling, milling, and welding fundamentals."
+          ],
+          "main_texts": []
+        },
+        {
+          "code": "ME 4210",
+          "title": "3D Solid Modeling and Assembling",
+          "credits": 0.75,
+          "course_type": "Lab",
+          "isMajor": true,
+          "content_summary": [
+            "Parametric 3D solid modeling and assembly design using CAD software."
+          ],
+          "main_texts": []
+        },
+        {
+          "code": "ME 4225",
+          "title": "Material Engineering",
+          "credits": 3,
+          "course_type": "Theory",
+          "isMajor": true,
+          "content_summary": [
+            "Structure–property relationships of engineering materials, heat treatment, and material selection."
+          ],
+          "main_texts": []
+        },
+        {
+          "code": "ME 4226",
+          "title": "Material Engineering Lab",
+          "credits": 0.75,
+          "course_type": "Lab",
+          "isMajor": true,
+          "content_summary": [
+            "Material testing experiments — hardness, tensile strength, and microstructure examination."
+          ],
+          "main_texts": []
+        },
+        {
+          "code": "Hum 4212",
+          "title": "Arabic / English Language II",
+          "credits": 0.75,
+          "course_type": "Lab",
+          "isMajor": false,
+          "content_summary": [
+            "Continued language and communication practice (Arabic/English) at an intermediate level."
+          ],
+          "main_texts": []
+        }
+      ]
+    },
+    {
+      "name": "Second Year · First Semester",
+      "total_credits": 21.75,
+      "courses": [
+        {
+          "code": "Math 4311",
+          "title": "Vector Analysis, Multivariable Calculus and Complex Variables",
+          "credits": 3,
+          "course_type": "Theory",
+          "isMajor": false,
+          "content_summary": [
+            "Vector calculus, multivariable calculus, and complex variable theory used in engineering analysis."
+          ],
+          "main_texts": []
+        },
+        {
+          "code": "EEE 4381",
+          "title": "Electronics and Digitization Techniques",
+          "credits": 3,
+          "course_type": "Theory",
+          "isMajor": true,
+          "content_summary": [
+            "Semiconductor devices, analog/digital electronics, and digitization techniques."
+          ],
+          "main_texts": []
+        },
+        {
+          "code": "EEE 4382",
+          "title": "Electronics and Digitization Techniques Lab",
+          "credits": 0.75,
+          "course_type": "Lab",
+          "isMajor": true,
+          "content_summary": [
+            "Circuit-building labs covering diodes, transistors, and basic digital logic."
+          ],
+          "main_texts": []
+        },
+        {
+          "code": "ME 4305",
+          "title": "Manufacturing Processes I",
+          "credits": 3,
+          "course_type": "Theory",
+          "isMajor": true,
+          "content_summary": [
+            "Traditional manufacturing processes — casting, forming, and joining — and their engineering trade-offs."
+          ],
+          "main_texts": []
+        },
+        {
+          "code": "ME 4306",
+          "title": "Manufacturing Processes I Lab",
+          "credits": 0.75,
+          "course_type": "Lab",
+          "isMajor": true,
+          "content_summary": [
+            "Practical exposure to casting, forming, and joining processes on real equipment."
+          ],
+          "main_texts": []
+        },
+        {
+          "code": "ME 4325",
+          "title": "Thermodynamics and Heat Transfer",
+          "credits": 3,
+          "course_type": "Theory",
+          "isMajor": true,
+          "content_summary": [
+            "Laws of thermodynamics, thermodynamic cycles, and modes of heat transfer."
+          ],
+          "main_texts": []
+        },
+        {
+          "code": "ME 4326",
+          "title": "Thermodynamics and Heat Transfer Lab",
+          "credits": 0.75,
+          "course_type": "Lab",
+          "isMajor": true,
+          "content_summary": [
+            "Experiments measuring heat transfer and thermodynamic cycle performance."
+          ],
+          "main_texts": []
+        },
+        {
+          "code": "CSE 4373",
+          "title": "Computer Programming and Applications",
+          "credits": 3,
+          "course_type": "Theory",
+          "isMajor": true,
+          "content_summary": [
+            "Structured programming fundamentals and their application to engineering problem-solving."
+          ],
+          "main_texts": []
+        },
+        {
+          "code": "CSE 4374",
+          "title": "Computer Programming and Applications Lab",
+          "credits": 1.5,
+          "course_type": "Lab",
+          "isMajor": true,
+          "content_summary": [
+            "Programming assignments and mini-projects building on the programming theory course."
+          ],
+          "main_texts": []
+        },
+        {
+          "code": "Hum 4317",
+          "title": "Science, Technology and Islam",
+          "credits": 3,
+          "course_type": "Theory",
+          "isMajor": false,
+          "content_summary": [
+            "The relationship between science, technology, and Islamic thought."
+          ],
+          "main_texts": []
+        }
+      ]
+    },
+    {
+      "name": "Second Year · Second Semester",
+      "total_credits": 20.25,
+      "courses": [
+        {
+          "code": "Math 4411",
+          "title": "Linear Algebra and Solid Geometry",
+          "credits": 3,
+          "course_type": "Theory",
+          "isMajor": false,
+          "content_summary": [
+            "Matrices, vector spaces, linear transformations, and solid (3D) geometry."
+          ],
+          "main_texts": []
+        },
+        {
+          "code": "IPE 4403",
+          "title": "Manufacturing Processes II",
+          "credits": 3,
+          "course_type": "Theory",
+          "isMajor": true,
+          "content_summary": [
+            "Machining and material-removal processes — turning, milling, grinding — and non-traditional manufacturing."
+          ],
+          "main_texts": []
+        },
+        {
+          "code": "IPE 4404",
+          "title": "Manufacturing Processes II Lab",
+          "credits": 0.75,
+          "course_type": "Lab",
+          "isMajor": true,
+          "content_summary": [
+            "Practical machining exercises on lathes, mills, and grinding equipment."
+          ],
+          "main_texts": []
+        },
+        {
+          "code": "ME 4403",
+          "title": "Mechanics of Materials",
+          "credits": 3,
+          "course_type": "Theory",
+          "isMajor": true,
+          "content_summary": [
+            "Stress, strain, and deformation of engineering materials under load."
+          ],
+          "main_texts": []
+        },
+        {
+          "code": "ME 4404",
+          "title": "Mechanics of Materials Lab",
+          "credits": 0.75,
+          "course_type": "Lab",
+          "isMajor": true,
+          "content_summary": [
+            "Experimental verification of stress–strain behavior and material failure modes."
+          ],
+          "main_texts": []
+        },
+        {
+          "code": "ME 4407",
+          "title": "Measurement, Instrumentation and Control",
+          "credits": 3,
+          "course_type": "Theory",
+          "isMajor": true,
+          "content_summary": [
+            "Sensors, measurement systems, and fundamentals of feedback control."
+          ],
+          "main_texts": []
+        },
+        {
+          "code": "ME 4408",
+          "title": "Measurement, Instrumentation and Control Lab",
+          "credits": 0.75,
+          "course_type": "Lab",
+          "isMajor": true,
+          "content_summary": [
+            "Hands-on measurement and instrumentation experiments."
+          ],
+          "main_texts": []
+        },
+        {
+          "code": "IPE 4405",
+          "title": "Industrial Law and Management",
+          "credits": 3,
+          "course_type": "Theory",
+          "isMajor": true,
+          "content_summary": [
+            "Labor and industrial law, and management principles for running an industrial organization."
+          ],
+          "main_texts": []
+        },
+        {
+          "code": "IPE 4439",
+          "title": "Principles of Economics and Cost Accounting",
+          "credits": 3,
+          "course_type": "Theory",
+          "isMajor": true,
+          "content_summary": [
+            "Micro/macroeconomics fundamentals and cost accounting techniques for engineering decisions."
+          ],
+          "main_texts": []
+        }
+      ]
+    },
+    {
+      "name": "Third Year · First Semester",
+      "total_credits": 21.0,
+      "courses": [
+        {
+          "code": "Math 4511",
+          "title": "Numerical Analysis",
+          "credits": 3,
+          "course_type": "Theory",
+          "isMajor": false,
+          "content_summary": [
+            "Numerical methods for solving equations, systems, and differential equations computationally."
+          ],
+          "main_texts": []
+        },
+        {
+          "code": "Math 4512",
+          "title": "Numerical Analysis Lab",
+          "credits": 0.75,
+          "course_type": "Lab",
+          "isMajor": false,
+          "content_summary": [
+            "Computer-based implementation of the numerical methods covered in theory."
+          ],
+          "main_texts": []
+        },
+        {
+          "code": "IPE 4531",
+          "title": "Probability and Statistics",
+          "credits": 3,
+          "course_type": "Theory",
+          "isMajor": true,
+          "content_summary": [
+            "Probability theory and statistical inference applied to engineering data and quality decisions."
+          ],
+          "main_texts": []
+        },
+        {
+          "code": "IPE 4513",
+          "title": "CAD/CAM/CAE",
+          "credits": 3,
+          "course_type": "Theory",
+          "isMajor": true,
+          "content_summary": [
+            "Computer-aided design, manufacturing, and engineering — bridging design software with production."
+          ],
+          "main_texts": []
+        },
+        {
+          "code": "IPE 4514",
+          "title": "CAD/CAM/CAE Lab",
+          "credits": 0.75,
+          "course_type": "Lab",
+          "isMajor": true,
+          "content_summary": [
+            "Hands-on CAD/CAM/CAE software practice, from modeling to toolpath generation."
+          ],
+          "main_texts": []
+        },
+        {
+          "code": "ME 4503",
+          "title": "Mechanics of Machines",
+          "credits": 3,
+          "course_type": "Theory",
+          "isMajor": true,
+          "content_summary": [
+            "Kinematics and dynamics of mechanisms — linkages, cams, and gears."
+          ],
+          "main_texts": []
+        },
+        {
+          "code": "ME 4504",
+          "title": "Mechanics of Machines Lab",
+          "credits": 0.75,
+          "course_type": "Lab",
+          "isMajor": true,
+          "content_summary": [
+            "Experiments analyzing motion and forces in mechanical systems."
+          ],
+          "main_texts": []
+        },
+        {
+          "code": "ME 4555",
+          "title": "Fluid Mechanics and Machinery",
+          "credits": 3,
+          "course_type": "Theory",
+          "isMajor": true,
+          "content_summary": [
+            "Fluid statics/dynamics and the machinery (pumps, turbines) built around fluid systems."
+          ],
+          "main_texts": []
+        },
+        {
+          "code": "ME 4556",
+          "title": "Fluid Mechanics and Machinery Lab",
+          "credits": 0.75,
+          "course_type": "Lab",
+          "isMajor": true,
+          "content_summary": [
+            "Laboratory measurement of fluid flow and machinery performance."
+          ],
+          "main_texts": []
+        },
+        {
+          "code": "IPE 4539",
+          "title": "Engineering Economy and Finance",
+          "credits": 3,
+          "course_type": "Theory",
+          "isMajor": true,
+          "content_summary": [
+            "Engineering economic analysis — time value of money, project evaluation, and financing decisions."
+          ],
+          "main_texts": []
+        }
+      ]
+    },
+    {
+      "name": "Third Year · Second Semester",
+      "total_credits": 21.75,
+      "courses": [
+        {
+          "code": "IPE 4602",
+          "title": "Business Communications and Seminar",
+          "credits": 0.75,
+          "course_type": "Lab",
+          "isMajor": true,
+          "content_summary": [
+            "Professional communication skills and a seminar on presenting technical work."
+          ],
+          "main_texts": []
+        },
+        {
+          "code": "IPE 4603",
+          "title": "Manufacturing Planning and Control",
+          "credits": 3,
+          "course_type": "Theory",
+          "isMajor": true,
+          "content_summary": [
+            "Production planning, scheduling, and control techniques for manufacturing systems."
+          ],
+          "main_texts": []
+        },
+        {
+          "code": "IPE 4605",
+          "title": "Quality Control and Management",
+          "credits": 3,
+          "course_type": "Theory",
+          "isMajor": true,
+          "content_summary": [
+            "Statistical quality control, quality management systems, and continuous improvement."
+          ],
+          "main_texts": []
+        },
+        {
+          "code": "IPE 4607",
+          "title": "Control Engineering and Industrial Automation",
+          "credits": 3,
+          "course_type": "Theory",
+          "isMajor": true,
+          "content_summary": [
+            "Control systems theory applied to industrial automation."
+          ],
+          "main_texts": []
+        },
+        {
+          "code": "IPE 4609",
+          "title": "Product Design I",
+          "credits": 3,
+          "course_type": "Theory",
+          "isMajor": true,
+          "content_summary": [
+            "Product design methodology — from concept generation to detailed design (part I)."
+          ],
+          "main_texts": []
+        },
+        {
+          "code": "IPE 4610",
+          "title": "Capstone Design I",
+          "credits": 1.5,
+          "course_type": "Capstone",
+          "isMajor": true,
+          "content_summary": [
+            "Guided capstone project work applying design methodology to a real problem (part I)."
+          ],
+          "main_texts": []
+        },
+        {
+          "code": "IPE 4611",
+          "title": "Operations Research",
+          "credits": 3,
+          "course_type": "Theory",
+          "isMajor": true,
+          "content_summary": [
+            "Optimization and decision-making models — linear programming, queuing, and related OR techniques."
+          ],
+          "main_texts": []
+        },
+        {
+          "code": "IPE 4612",
+          "title": "Modeling and Simulation Lab",
+          "credits": 1.5,
+          "course_type": "Lab",
+          "isMajor": true,
+          "content_summary": [
+            "Building and analyzing simulation models of manufacturing/production systems."
+          ],
+          "main_texts": []
+        },
+        {
+          "code": "IPE 46E1",
+          "title": "Elective Subject I",
+          "credits": 3,
+          "course_type": "Optional",
+          "isMajor": true,
+          "content_summary": [
+            "Chosen from the department's approved elective/specialization list for IPE, based on availability that semester.",
+            "Full elective/specialization list: Computational Mechanics, Conventional and Non-Conventional Energy Resources, Reverse Engineering, Micro and Nano Manufacturing, Noise and Vibration, Reliability and Maintenance Engineering, Marketing Management, Mechatronics, Nuclear Engineering, Entrepreneurship Development & International Negotiation, Computer Integrated Manufacturing, Technology Management, Non-conventional Machining Processes, Industrial Hazard and Safety, Textile Engineering, Biomedical Engineering, Management Information System, Sustainable Energy Management, Light Structures and Composite Materials."
+          ],
+          "main_texts": []
+        }
+      ]
+    },
+    {
+      "name": "Fourth Year · First Semester",
+      "total_credits": 21.0,
+      "courses": [
+        {
+          "code": "IPE 4700",
+          "title": "Project and Thesis I",
+          "credits": 2,
+          "course_type": "Capstone",
+          "isMajor": true,
+          "content_summary": [
+            "Independent research/thesis work — problem definition and early-stage investigation (part I)."
+          ],
+          "main_texts": []
+        },
+        {
+          "code": "IPE 4705",
+          "title": "Ergonomics and Safety Management",
+          "credits": 3,
+          "course_type": "Theory",
+          "isMajor": true,
+          "content_summary": [
+            "Human factors, workplace design, and occupational safety management."
+          ],
+          "main_texts": []
+        },
+        {
+          "code": "IPE 4706",
+          "title": "Ergonomics and Safety Management Lab",
+          "credits": 0.75,
+          "course_type": "Lab",
+          "isMajor": true,
+          "content_summary": [
+            "Practical ergonomic assessment and safety-management exercises."
+          ],
+          "main_texts": []
+        },
+        {
+          "code": "IPE 4709",
+          "title": "Product Design II",
+          "credits": 3,
+          "course_type": "Theory",
+          "isMajor": true,
+          "content_summary": [
+            "Continuation of product design methodology into prototyping and evaluation (part II)."
+          ],
+          "main_texts": []
+        },
+        {
+          "code": "IPE 4710",
+          "title": "Capstone Design II",
+          "credits": 1.5,
+          "course_type": "Capstone",
+          "isMajor": true,
+          "content_summary": [
+            "Guided capstone project work, continued — refinement and completion (part II)."
+          ],
+          "main_texts": []
+        },
+        {
+          "code": "IPE 4715",
+          "title": "Material Handling and Maintenance Management",
+          "credits": 3,
+          "course_type": "Theory",
+          "isMajor": true,
+          "content_summary": [
+            "Material handling systems and maintenance-management strategies for industrial equipment."
+          ],
+          "main_texts": []
+        },
+        {
+          "code": "IPE 4716",
+          "title": "Material Handling and Maintenance Management Lab",
+          "credits": 0.75,
+          "course_type": "Lab",
+          "isMajor": true,
+          "content_summary": [
+            "Applied exercises in material handling system design and maintenance planning."
+          ],
+          "main_texts": []
+        },
+        {
+          "code": "IPE 4725",
+          "title": "Supply Chain Management",
+          "credits": 3,
+          "course_type": "Theory",
+          "isMajor": true,
+          "content_summary": [
+            "Supply chain design, logistics, and coordination across a production network."
+          ],
+          "main_texts": []
+        },
+        {
+          "code": "IPE 4790",
+          "title": "Industrial Training",
+          "credits": 1,
+          "course_type": "Capstone",
+          "isMajor": true,
+          "content_summary": [
+            "A compulsory industry placement applying classroom knowledge in a real manufacturing/production setting."
+          ],
+          "main_texts": []
+        },
+        {
+          "code": "IPE 47E1",
+          "title": "Elective Subject II",
+          "credits": 3,
+          "course_type": "Optional",
+          "isMajor": true,
+          "content_summary": [
+            "Chosen from the department's approved elective/specialization list for IPE, based on availability that semester.",
+            "Full elective/specialization list: Computational Mechanics, Conventional and Non-Conventional Energy Resources, Reverse Engineering, Micro and Nano Manufacturing, Noise and Vibration, Reliability and Maintenance Engineering, Marketing Management, Mechatronics, Nuclear Engineering, Entrepreneurship Development & International Negotiation, Computer Integrated Manufacturing, Technology Management, Non-conventional Machining Processes, Industrial Hazard and Safety, Textile Engineering, Biomedical Engineering, Management Information System, Sustainable Energy Management, Light Structures and Composite Materials."
+          ],
+          "main_texts": []
+        }
+      ]
+    },
+    {
+      "name": "Fourth Year · Second Semester",
+      "total_credits": 16.75,
+      "courses": [
+        {
+          "code": "IPE 4800",
+          "title": "Project and Thesis II",
+          "credits": 4,
+          "course_type": "Capstone",
+          "isMajor": true,
+          "content_summary": [
+            "Independent research/thesis work — completion, analysis, and defense (part II)."
+          ],
+          "main_texts": []
+        },
+        {
+          "code": "IPE 4805",
+          "title": "Project and Environmental Management",
+          "credits": 3,
+          "course_type": "Theory",
+          "isMajor": true,
+          "content_summary": [
+            "Project management principles and environmental-impact considerations for industrial projects."
+          ],
+          "main_texts": []
+        },
+        {
+          "code": "ME 4821",
+          "title": "Machine Tools",
+          "credits": 3,
+          "course_type": "Theory",
+          "isMajor": true,
+          "content_summary": [
+            "Machine tool design and operation — the equipment behind modern manufacturing."
+          ],
+          "main_texts": []
+        },
+        {
+          "code": "ME 4822",
+          "title": "Machine Tools Lab",
+          "credits": 0.75,
+          "course_type": "Lab",
+          "isMajor": true,
+          "content_summary": [
+            "Hands-on machine-tool operation and measurement exercises."
+          ],
+          "main_texts": []
+        },
+        {
+          "code": "IPE 48E1",
+          "title": "Elective Subject III",
+          "credits": 3,
+          "course_type": "Optional",
+          "isMajor": true,
+          "content_summary": [
+            "Chosen from the department's approved elective/specialization list for IPE, based on availability that semester.",
+            "Full elective/specialization list: Computational Mechanics, Conventional and Non-Conventional Energy Resources, Reverse Engineering, Micro and Nano Manufacturing, Noise and Vibration, Reliability and Maintenance Engineering, Marketing Management, Mechatronics, Nuclear Engineering, Entrepreneurship Development & International Negotiation, Computer Integrated Manufacturing, Technology Management, Non-conventional Machining Processes, Industrial Hazard and Safety, Textile Engineering, Biomedical Engineering, Management Information System, Sustainable Energy Management, Light Structures and Composite Materials."
+          ],
+          "main_texts": []
+        },
+        {
+          "code": "IPE 48E2",
+          "title": "Elective Subject IV",
+          "credits": 3,
+          "course_type": "Optional",
+          "isMajor": true,
+          "content_summary": [
+            "Chosen from the department's approved elective/specialization list for IPE, based on availability that semester.",
+            "Full elective/specialization list: Computational Mechanics, Conventional and Non-Conventional Energy Resources, Reverse Engineering, Micro and Nano Manufacturing, Noise and Vibration, Reliability and Maintenance Engineering, Marketing Management, Mechatronics, Nuclear Engineering, Entrepreneurship Development & International Negotiation, Computer Integrated Manufacturing, Technology Management, Non-conventional Machining Processes, Industrial Hazard and Safety, Textile Engineering, Biomedical Engineering, Management Information System, Sustainable Energy Management, Light Structures and Composite Materials."
+          ],
+          "main_texts": []
+        }
+      ]
+    }
+  ]
+}

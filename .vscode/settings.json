@@ -1,0 +1,8 @@
+{
+    "chat.tools.terminal.autoApprove": {
+        "/^powershell -ExecutionPolicy Bypass -Command \"cd 'C:\\\\Users\\\\User\\\\Documents\\\\project\\\\ipe-website-fixed\\\\ipe-website \\(me\\)'; npm run dev\"$/": {
+            "approve": true,
+            "matchCommandLine": true
+        }
+    }
+}
