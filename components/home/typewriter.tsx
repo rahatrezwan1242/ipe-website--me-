@@ -14,15 +14,7 @@ type Props = {
 };
 
 /** Reveals `text` one character at a time; leaves a blinking `|` cursor while typing. */
-export function Typewriter({
-  text,
-  speed = 30,
-  startDelay = 0,
-  onDone,
-  className,
-  cursorClassName,
-  hideCursorWhenDone = true,
-}: Props) {
+export function Typewriter({ text, speed = 30, startDelay = 0, onDone, className, cursorClassName, hideCursorWhenDone = true }: Props) {
   const [started, setStarted] = useState(startDelay <= 0);
   const [count, setCount] = useState(0);
 
@@ -48,9 +40,7 @@ export function Typewriter({
   return (
     <span className={className}>
       {text.slice(0, count)}
-      {(!done || !hideCursorWhenDone) && (
-        <span className={cn("animate-pulse", cursorClassName)}>|</span>
-      )}
+      {(!done || !hideCursorWhenDone) && <span className={cn("animate-pulse", cursorClassName)}>|</span>}
     </span>
   );
 }

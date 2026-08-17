@@ -1,5 +1,5 @@
 import { HOME, HOME_FONT_VARS } from "@/lib/home-palette";
-import { HomeShell } from "@/components/home/home-shell";
+import { LoadingScreen } from "@/components/home/loading-screen";
 import { HomeNavbar } from "@/components/home/home-navbar";
 import { Hero } from "@/components/home/hero";
 import { Memories } from "@/components/home/memories";
@@ -10,16 +10,15 @@ import { HomeFooter } from "@/components/home/home-footer";
 export default function HomePage() {
   return (
     <main className={`${HOME_FONT_VARS} antialiased`} style={{ background: HOME.bgBase }}>
-      <HomeShell>
-        <HomeNavbar />
-        <div className="snap-y snap-mandatory">
-          <Hero />
-          <Memories />
-        </div>
-        <Timeline />
-        <Representatives />
-        <HomeFooter />
-      </HomeShell>
+      <LoadingScreen />
+      <HomeNavbar />
+      <div className="snap-y snap-mandatory">
+        <Hero />
+        <Memories />
+      </div>
+      <Timeline />
+      <Representatives />
+      <HomeFooter />
     </main>
   );
 }

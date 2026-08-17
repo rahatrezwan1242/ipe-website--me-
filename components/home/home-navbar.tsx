@@ -34,36 +34,16 @@ export function HomeNavbar() {
       id="top"
       className="fixed inset-x-0 top-0 z-100 backdrop-blur-xl transition-colors duration-300"
       style={{
-        background: pastHero
-          ? `color-mix(in oklab, ${HOME.bgBase} 98%, transparent)`
-          : `color-mix(in oklab, ${HOME.bgBase} 90%, transparent)`,
+        background: pastHero ? `color-mix(in oklab, ${HOME.bgBase} 98%, transparent)` : `color-mix(in oklab, ${HOME.bgBase} 90%, transparent)`,
         borderBottom: `1px solid color-mix(in oklab, ${HOME.border} 50%, transparent)`,
       }}
     >
       <div className="mx-auto flex h-18 max-w-7xl items-center justify-between px-5 lg:px-8">
         <a href="#top" className="flex items-center gap-3">
-          <Image
-            src="/iut-logo.png"
-            alt="IUT logo"
-            width={36}
-            height={36}
-            priority
-            className="h-9 w-9 rounded-lg border object-contain"
-            style={{ borderColor: `color-mix(in oklab, ${HOME.border} 60%, transparent)` }}
-          />
+          <Image src="/iut-logo.png" alt="IUT logo" width={36} height={36} priority className="h-9 w-9 rounded-lg border object-contain" style={{ borderColor: `color-mix(in oklab, ${HOME.border} 60%, transparent)` }} />
           <div className="hidden sm:block">
-            <p
-              className="text-sm font-semibold tracking-tight"
-              style={{ fontFamily: "var(--font-cormorant)", color: HOME.textPrimary }}
-            >
-              IUT · IPE
-            </p>
-            <p
-              className="font-mono text-[8px] uppercase tracking-[.22em]"
-              style={{ color: HOME.textMuted }}
-            >
-              Industrial &amp; Production Engineering
-            </p>
+            <p className="text-sm font-semibold tracking-tight" style={{ fontFamily: "var(--font-cormorant)", color: HOME.textPrimary }}>IUT · IPE</p>
+            <p className="font-mono text-[8px] uppercase tracking-[.22em]" style={{ color: HOME.textMuted }}>Industrial &amp; Production Engineering</p>
           </div>
         </a>
 
@@ -92,12 +72,7 @@ export function HomeNavbar() {
           <Link
             href="/curriculum"
             className="hidden items-center rounded-full border px-4 py-2 text-xs font-semibold transition-opacity hover:opacity-80 sm:inline-flex"
-            style={{
-              fontFamily: "var(--font-figtree)",
-              borderColor: `color-mix(in oklab, ${HOME.accentWarm} 60%, transparent)`,
-              background: `color-mix(in oklab, ${HOME.accentWarm} 8%, transparent)`,
-              color: HOME.accentWarm,
-            }}
+            style={{ fontFamily: "var(--font-figtree)", borderColor: `color-mix(in oklab, ${HOME.accentWarm} 60%, transparent)`, background: `color-mix(in oklab, ${HOME.accentWarm} 8%, transparent)`, color: HOME.accentWarm }}
           >
             Curriculum
           </Link>
@@ -105,10 +80,7 @@ export function HomeNavbar() {
           <button
             type="button"
             className="grid h-9 w-9 place-items-center rounded-full border md:hidden"
-            style={{
-              borderColor: `color-mix(in oklab, ${HOME.border} 60%, transparent)`,
-              color: HOME.textPrimary,
-            }}
+            style={{ borderColor: `color-mix(in oklab, ${HOME.border} 60%, transparent)`, color: HOME.textPrimary }}
             onClick={() => setOpen((v) => !v)}
             aria-label="menu"
           >
@@ -119,31 +91,14 @@ export function HomeNavbar() {
 
       <AnimatePresence>
         {open && (
-          <motion.div
-            initial={{ height: 0 }}
-            animate={{ height: "auto" }}
-            exit={{ height: 0 }}
-            className="overflow-hidden border-t md:hidden"
-            style={{ borderColor: `color-mix(in oklab, ${HOME.border} 50%, transparent)` }}
-          >
+          <motion.div initial={{ height: 0 }} animate={{ height: "auto" }} exit={{ height: 0 }} className="overflow-hidden border-t md:hidden" style={{ borderColor: `color-mix(in oklab, ${HOME.border} 50%, transparent)` }}>
             <div className="mx-auto max-w-7xl px-5 py-3">
               {LINKS.map((l) => (
-                <a
-                  key={l.href}
-                  href={l.href}
-                  onClick={() => setOpen(false)}
-                  className="block rounded-lg px-3 py-3 text-sm"
-                  style={{ color: HOME.textSecondary }}
-                >
+                <a key={l.href} href={l.href} onClick={() => setOpen(false)} className="block rounded-lg px-3 py-3 text-sm" style={{ color: HOME.textSecondary }}>
                   {l.label}
                 </a>
               ))}
-              <Link
-                href="/curriculum"
-                onClick={() => setOpen(false)}
-                className="mt-1 block rounded-lg px-3 py-3 text-sm font-semibold"
-                style={{ color: HOME.accentWarm }}
-              >
+              <Link href="/curriculum" onClick={() => setOpen(false)} className="mt-1 block rounded-lg px-3 py-3 text-sm font-semibold" style={{ color: HOME.accentWarm }}>
                 Curriculum
               </Link>
             </div>
