@@ -45,18 +45,15 @@ export function useCoachmark<T extends HTMLElement = HTMLElement>(
     if (!el) return;
 
     const threshold = options?.threshold ?? 0.4;
-    const obs = new IntersectionObserver(
-      (entries) => {
-        for (const e of entries) {
-          if (e.isIntersecting && !dismissedRef.current) {
-            setShow(true);
-            obs.disconnect();
-            return;
-          }
+    const obs = new IntersectionObserver((entries) => {
+      for (const e of entries) {
+        if (e.isIntersecting && !dismissedRef.current) {
+          setShow(true);
+          obs.disconnect();
+          return;
         }
-      },
-      { threshold },
-    );
+      }
+    }, { threshold });
     obs.observe(el);
     return () => obs.disconnect();
   }, [sessionKey, options?.threshold, persistEnabled]);

@@ -2,12 +2,7 @@
 
 import { useRef, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
-import {
-  ChevronRight,
-  FlaskConical,
-  GraduationCap,
-  Layers,
-} from "lucide-react";
+import { ChevronRight, FlaskConical, GraduationCap, Layers } from "lucide-react";
 
 import { curriculum } from "@/lib/curriculum";
 import type { Course, Semester } from "@/lib/types";
@@ -23,23 +18,12 @@ function CourseLine({ course }: { course: Course }) {
     <CourseDetailDialog
       course={course}
       trigger={
-        <button
-          type="button"
-          className="grid w-full grid-cols-[auto_1fr_auto] items-start gap-3 px-3 py-2 text-left transition-colors hover:bg-muted/50 focus-visible:bg-muted/50 focus-visible:outline-none"
-        >
-          <span className="rounded border border-course-major/40 bg-course-major/10 px-1.5 py-0.5 font-mono text-[11px] font-semibold tracking-tight text-course-major">
-            {course.code}
-          </span>
-          <span className="min-w-0 text-sm font-medium text-foreground">
-            {course.title}
-          </span>
+        <button type="button" className="grid w-full grid-cols-[auto_1fr_auto] items-start gap-3 px-3 py-2 text-left transition-colors hover:bg-muted/50 focus-visible:bg-muted/50 focus-visible:outline-none">
+          <span className="rounded border border-course-major/40 bg-course-major/10 px-1.5 py-0.5 font-mono text-[11px] font-semibold tracking-tight text-course-major">{course.code}</span>
+          <span className="min-w-0 text-sm font-medium text-foreground">{course.title}</span>
           <span className="flex items-center gap-2 text-[11px] tabular-nums">
-            {course.course_type === "Lab" && (
-              <FlaskConical className="h-3 w-3 text-course-lab" />
-            )}
-            <span className="font-mono text-muted-foreground">
-              {course.credits.toFixed(1)} cr
-            </span>
+            {course.course_type === "Lab" && <FlaskConical className="h-3 w-3 text-course-lab" />}
+            <span className="font-mono text-muted-foreground">{course.credits.toFixed(1)} cr</span>
           </span>
         </button>
       }
@@ -47,67 +31,30 @@ function CourseLine({ course }: { course: Course }) {
   );
 }
 
-function SemesterRow({
-  semester,
-  semIndex,
-  defaultOpen,
-}: {
-  semester: Semester;
-  semIndex: number;
-  defaultOpen?: boolean;
-}) {
+function SemesterRow({ semester, semIndex, defaultOpen }: { semester: Semester; semIndex: number; defaultOpen?: boolean }) {
   const [open, setOpen] = useState(!!defaultOpen);
   const rowRef = useRef<HTMLDivElement>(null);
   useCollapseRow(1, rowRef, open, () => setOpen(false));
-  const theoryCount = semester.courses.filter(
-    (c) => c.course_type === "Theory",
-  ).length;
-  const labCount = semester.courses.filter(
-    (c) => c.course_type === "Lab" || c.course_type === "Capstone",
-  ).length;
+  const theoryCount = semester.courses.filter((c) => c.course_type === "Theory").length;
+  const labCount = semester.courses.filter((c) => c.course_type === "Lab" || c.course_type === "Capstone").length;
 
   return (
     <div ref={rowRef} className="border-t border-border/50 first:border-t-0">
-      <button
-        type="button"
-        onClick={() => setOpen((v) => !v)}
-        className="flex w-full items-center gap-2 px-3 py-2.5 text-left transition-colors hover:bg-muted/30"
-      >
-        <ChevronRight
-          className={cn(
-            "h-3.5 w-3.5 shrink-0 text-muted-foreground transition-transform",
-            open && "rotate-90",
-          )}
-        />
-        <span className="shrink-0 whitespace-nowrap font-mono text-[11px] uppercase tracking-widest text-muted-foreground">
-          {YEAR_WORDS[semIndex]} Semester
-        </span>
+      <button type="button" onClick={() => setOpen((v) => !v)} className="flex w-full items-center gap-2 px-3 py-2.5 text-left transition-colors hover:bg-muted/30">
+        <ChevronRight className={cn("h-3.5 w-3.5 shrink-0 text-muted-foreground transition-transform", open && "rotate-90")} />
+        <span className="shrink-0 whitespace-nowrap font-mono text-[11px] uppercase tracking-widest text-muted-foreground">{YEAR_WORDS[semIndex]} Semester</span>
         <span className="ml-auto flex flex-wrap items-center justify-end gap-x-3 gap-y-0.5 text-[11px] tabular-nums text-muted-foreground">
-          <span className="hidden sm:inline">
-            {semester.courses.length}c · {theoryCount}T · {labCount}L
-          </span>
-          <span className="sm:hidden">
-            {semester.courses.length} courses
-          </span>
-          <span className="font-mono text-foreground/85">
-            {semester.total_credits.toFixed(1)} cr
-          </span>
+          <span className="hidden sm:inline">{semester.courses.length}c · {theoryCount}T · {labCount}L</span>
+          <span className="sm:hidden">{semester.courses.length} courses</span>
+          <span className="font-mono text-foreground/85">{semester.total_credits.toFixed(1)} cr</span>
         </span>
       </button>
 
       <AnimatePresence initial={false}>
         {open && (
-          <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.18 }}
-            className="overflow-hidden"
-          >
+          <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.18 }} className="overflow-hidden">
             <div className="divide-y divide-border/40 [&>*:nth-child(even)]:bg-muted/25">
-              {semester.courses.map((c) => (
-                <CourseLine key={c.code} course={c} />
-              ))}
+              {semester.courses.map((c) => <CourseLine key={c.code} course={c} />)}
             </div>
           </motion.div>
         )}
@@ -120,55 +67,28 @@ function YearBlock({ yearIndex }: { yearIndex: number }) {
   const [open, setOpen] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
   useCollapseRow(0, sectionRef, open, () => setOpen(false));
-  const semesters = [
-    curriculum.semesters[yearIndex * 2],
-    curriculum.semesters[yearIndex * 2 + 1],
-  ].filter(Boolean) as Semester[];
+  const semesters = [curriculum.semesters[yearIndex * 2], curriculum.semesters[yearIndex * 2 + 1]].filter(Boolean) as Semester[];
   const yearCredits = semesters.reduce((s, x) => s + x.total_credits, 0);
   const yearCourses = semesters.reduce((s, x) => s + x.courses.length, 0);
 
   return (
-    <section
-      ref={sectionRef}
-      className="self-start rounded-lg border border-border bg-[color-mix(in_oklab,var(--card)_55%,transparent)] backdrop-blur-sm"
-    >
-      <button
-        type="button"
-        onClick={() => setOpen((v) => !v)}
-        className="flex w-full items-center gap-3 px-3 py-2.5 text-left transition-colors hover:bg-muted/20"
-      >
-        <ChevronRight
-          className={cn(
-            "h-4 w-4 shrink-0 text-muted-foreground transition-transform",
-            open && "rotate-90",
-          )}
-        />
+    <section ref={sectionRef} className="self-start rounded-lg border border-border bg-[color-mix(in_oklab,var(--card)_55%,transparent)] backdrop-blur-sm">
+      <button type="button" onClick={() => setOpen((v) => !v)} className="flex w-full items-center gap-3 px-3 py-2.5 text-left transition-colors hover:bg-muted/20">
+        <ChevronRight className={cn("h-4 w-4 shrink-0 text-muted-foreground transition-transform", open && "rotate-90")} />
         <GraduationCap className="h-4 w-4 shrink-0 text-accent/80" />
-        <h2 className="shrink-0 whitespace-nowrap font-serif text-lg tracking-tight">
-          {YEAR_WORDS[yearIndex]} Year
-        </h2>
+        <h2 className="shrink-0 whitespace-nowrap font-serif text-lg tracking-tight">{YEAR_WORDS[yearIndex]} Year</h2>
         {/* whitespace-nowrap on every piece so nothing can wrap even at a sub-pixel-tight
             width — the card grid was widened a touch (app/curriculum/page.tsx) to make room. */}
         <span className="ml-auto flex shrink-0 items-center gap-3 text-xs tabular-nums text-muted-foreground">
           <span className="hidden whitespace-nowrap sm:inline">{yearCourses} courses</span>
-          <span className="whitespace-nowrap font-mono text-foreground/85">
-            {yearCredits.toFixed(1)} cr
-          </span>
+          <span className="whitespace-nowrap font-mono text-foreground/85">{yearCredits.toFixed(1)} cr</span>
         </span>
       </button>
 
       <AnimatePresence initial={false}>
         {open && (
-          <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            className="overflow-hidden border-t border-border/60"
-          >
-            {semesters.map((s, i) => (
-              <SemesterRow key={s.name} semester={s} semIndex={i} />
-            ))}
+          <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.2 }} className="overflow-hidden border-t border-border/60">
+            {semesters.map((s, i) => <SemesterRow key={s.name} semester={s} semIndex={i} />)}
           </motion.div>
         )}
       </AnimatePresence>
@@ -186,12 +106,7 @@ export function CurriculumTree() {
       <div className="grid grid-cols-1 items-start gap-3 lg:grid-cols-2">
         {[0, 1, 2, 3].map((y) =>
           y === 0 ? (
-            <CoachmarkHint
-              key={y}
-              sessionKey="hint:year-1"
-              label="Click to expand semesters"
-              persist={false}
-            >
+            <CoachmarkHint key={y} sessionKey="hint:year-1" label="Click to expand semesters" persist={false}>
               <YearBlock yearIndex={y} />
             </CoachmarkHint>
           ) : (

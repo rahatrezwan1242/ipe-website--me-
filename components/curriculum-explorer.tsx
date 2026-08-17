@@ -25,21 +25,14 @@ export function CurriculumExplorer() {
             key={v.key}
             type="button"
             onClick={() => setView(v.key)}
-            className={cn(
-              "rounded-full px-4 py-1.5 text-xs font-medium transition",
-              view === v.key
-                ? "bg-accent text-accent-foreground"
-                : "text-muted-foreground hover:bg-muted/50 hover:text-foreground",
-            )}
+            className={cn("rounded-full px-4 py-1.5 text-xs font-medium transition", view === v.key ? "bg-accent text-accent-foreground" : "text-muted-foreground hover:bg-muted/50 hover:text-foreground")}
           >
             {v.label}
           </button>
         ))}
       </div>
 
-      <CollapseStackProvider>
-        {view === "tree" ? <CurriculumTree /> : <CurriculumBreakdown />}
-      </CollapseStackProvider>
+      <CollapseStackProvider>{view === "tree" ? <CurriculumTree /> : <CurriculumBreakdown />}</CollapseStackProvider>
     </div>
   );
 }

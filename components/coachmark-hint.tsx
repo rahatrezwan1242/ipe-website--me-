@@ -23,23 +23,11 @@ type Props = {
  * wrapper (so opening the underlying element also dismisses it), or on
  * auto-timeout from `useCoachmark`.
  */
-export function CoachmarkHint({
-  sessionKey,
-  label,
-  children,
-  persist,
-  className,
-}: Props) {
-  const { ref, show, dismiss } = useCoachmark<HTMLDivElement>(sessionKey, {
-    persist,
-  });
+export function CoachmarkHint({ sessionKey, label, children, persist, className }: Props) {
+  const { ref, show, dismiss } = useCoachmark<HTMLDivElement>(sessionKey, { persist });
 
   return (
-    <div
-      ref={ref}
-      onClick={() => show && dismiss()}
-      className={cn("relative self-start", className)}
-    >
+    <div ref={ref} onClick={() => show && dismiss()} className={cn("relative self-start", className)}>
       <AnimatePresence>
         {show && (
           <motion.div
@@ -47,25 +35,13 @@ export function CoachmarkHint({
             role="tooltip"
             initial={{ opacity: 0, y: 6, scale: 0.94 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{
-              opacity: 0,
-              scale: 0.96,
-              transition: { duration: 0.7, ease: "easeOut" },
-            }}
+            exit={{ opacity: 0, scale: 0.96, transition: { duration: 0.7, ease: "easeOut" } }}
             transition={{ type: "spring", stiffness: 320, damping: 22 }}
             className="pointer-events-auto absolute -top-3 left-3 z-20 flex -translate-y-full items-center gap-2 rounded-full border border-accent/50 bg-background/95 px-3 py-1.5 text-xs font-medium text-accent shadow-lg backdrop-blur"
           >
             <span aria-hidden>👉</span>
             <span>{label}</span>
-            <button
-              type="button"
-              onClick={(e) => {
-                e.stopPropagation();
-                dismiss();
-              }}
-              aria-label="Dismiss tip"
-              className="grid h-5 w-5 place-items-center rounded-full text-accent/70 transition-colors hover:bg-accent/10 hover:text-accent"
-            >
+            <button type="button" onClick={(e) => { e.stopPropagation(); dismiss(); }} aria-label="Dismiss tip" className="grid h-5 w-5 place-items-center rounded-full text-accent/70 transition-colors hover:bg-accent/10 hover:text-accent">
               <X className="h-3 w-3" />
             </button>
             {/* Arrow pointing down at the wrapped element */}

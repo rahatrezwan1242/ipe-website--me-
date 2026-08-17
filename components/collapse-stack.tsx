@@ -1,13 +1,6 @@
 "use client";
 
-import {
-  createContext,
-  useContext,
-  useEffect,
-  useRef,
-  type ReactNode,
-  type RefObject,
-} from "react";
+import { createContext, useContext, useEffect, useRef, type ReactNode, type RefObject } from "react";
 
 /**
  * Outside-click → collapse-deepest behaviour for nested expandable rows.
@@ -25,29 +18,16 @@ import {
  *      level off the stack.
  */
 
-type Entry = {
-  id: number;
-  depth: number;
-  ref: RefObject<HTMLElement | null>;
-  isOpenRef: { current: boolean };
-  close: () => void;
-};
+type Entry = { id: number; depth: number; ref: RefObject<HTMLElement | null>; isOpenRef: { current: boolean }; close: () => void };
 
 const NO_COLLAPSE_SELECTORS = [
-  "[data-slot=dialog-content]",
-  "[data-slot=dialog-overlay]",
-  "[data-slot=select-content]",
-  "[role=dialog]",
-  "[role=menu]",
-  "[role=tooltip]",
-  "[data-no-row-collapse]",
+  "[data-slot=dialog-content]", "[data-slot=dialog-overlay]", "[data-slot=select-content]",
+  "[role=dialog]", "[role=menu]", "[role=tooltip]", "[data-no-row-collapse]",
 ] as const;
 
 let nextId = 1;
 
-const Ctx = createContext<{
-  register: (e: Entry) => () => void;
-} | null>(null);
+const Ctx = createContext<{ register: (e: Entry) => () => void } | null>(null);
 
 export function CollapseStackProvider({ children }: { children: ReactNode }) {
   const stack = useRef<Entry[]>([]);
@@ -63,9 +43,7 @@ export function CollapseStackProvider({ children }: { children: ReactNode }) {
       }
 
       // Click inside ANY known row (open or closed) is neutral.
-      const insideAnyRow = stack.current.some((en) =>
-        en.ref.current?.contains(target),
-      );
+      const insideAnyRow = stack.current.some((en) => en.ref.current?.contains(target));
       if (insideAnyRow) return;
 
       // Otherwise: pop the deepest open row.
@@ -92,9 +70,7 @@ export function CollapseStackProvider({ children }: { children: ReactNode }) {
       value={{
         register: (entry) => {
           stack.current.push(entry);
-          return () => {
-            stack.current = stack.current.filter((e) => e.id !== entry.id);
-          };
+          return () => { stack.current = stack.current.filter((e) => e.id !== entry.id); };
         },
       }}
     >
@@ -107,33 +83,17 @@ export function CollapseStackProvider({ children }: { children: ReactNode }) {
  * Register an expandable row with the surrounding `CollapseStackProvider`.
  * Outside the provider, this is a no-op so callers can use it freely.
  */
-export function useCollapseRow(
-  depth: number,
-  elementRef: RefObject<HTMLElement | null>,
-  isOpen: boolean,
-  onClose: () => void,
-) {
+export function useCollapseRow(depth: number, elementRef: RefObject<HTMLElement | null>, isOpen: boolean, onClose: () => void) {
   const ctx = useContext(Ctx);
   const isOpenRef = useRef(isOpen);
   const closeRef = useRef(onClose);
 
-  useEffect(() => {
-    isOpenRef.current = isOpen;
-  }, [isOpen]);
-
-  useEffect(() => {
-    closeRef.current = onClose;
-  }, [onClose]);
+  useEffect(() => { isOpenRef.current = isOpen; }, [isOpen]);
+  useEffect(() => { closeRef.current = onClose; }, [onClose]);
 
   useEffect(() => {
     if (!ctx) return;
     const id = nextId++;
-    return ctx.register({
-      id,
-      depth,
-      ref: elementRef,
-      isOpenRef,
-      close: () => closeRef.current(),
-    });
+    return ctx.register({ id, depth, ref: elementRef, isOpenRef, close: () => closeRef.current() });
   }, [ctx, depth, elementRef]);
 }
