@@ -7,15 +7,15 @@ import { useTheme } from "@/components/theme-provider";
 /**
  * Ambient gear & mechanism field: silhouette gears of varying size drift
  * slowly across the viewport, each spinning at its own rate (alternating
- * direction so nearby gears read as if meshing), occasionally linked by a
- * faint dashed "belt" line when two gears drift close together — evokes
- * production machinery rather than generic decoration.
+ * direction so nearby gears read as if meshing), linked center-to-center by
+ * faint dotted lines into a loose zigzag network — evokes production
+ * machinery rather than generic decoration.
  *
  * Perf guards: gear count scales with viewport area (halved on coarse
  * pointers) and is capped low since each gear is a heavier draw than a
- * plain dot (teeth loop + pitch circle + spokes + bore). Belt-line pairing
- * is an O(n^2) distance check but n is capped small, so it's trivial per
- * frame. FPS capped ~60. Under prefers-reduced-motion the scene renders
+ * plain dot (teeth loop + pitch circle + spokes + bore). Network-edge
+ * selection is an O(n^2 log n) sort but n is capped small, so it's trivial
+ * per frame. FPS capped ~60. Under prefers-reduced-motion the scene renders
  * once and the rAF loop never starts (true stillness, not just zero
  * velocity), so it costs nothing once painted; a theme toggle still
  * repaints it once via the effect below.
@@ -63,7 +63,13 @@ export function ParticleBackground() {
     let raf = 0;
     let last = 0;
     const frameMs = 1000 / 60;
-    const BELT_DIST = 240;
+    // Wide enough that most gears on screen find a neighbor to connect to, rather than
+    // only occasionally drifting close enough — reads as a deliberate connected network.
+    const BELT_DIST = 480;
+    // Capping each gear's links to 2 turns the connections into loose chains of a
+    // few gears (a zigzag path) instead of every nearby pair lighting up at once,
+    // which reads as a messy full mesh rather than a deliberate network.
+    const MAX_LINKS_PER_GEAR = 2;
 
     function sizeAndSeed() {
       const w = window.innerWidth;
@@ -81,16 +87,19 @@ export function ParticleBackground() {
     }
 
     function drawGear(g: Gear) {
+      // Light backgrounds swallow thin translucent strokes that glow crisply on dark navy —
+      // bump weight/opacity in light mode only so the linework reads with equal confidence.
+      const isLight = themeRef.current === "light";
       const toothLen = g.radius * 0.22;
       const toothWidth = ((Math.PI * 2) / g.teeth) * 0.5;
-      const alpha = Math.min(1, g.life) * 0.55;
+      const alpha = Math.min(1, g.life) * (isLight ? 0.8 : 0.55);
 
       ctx.save();
       ctx.translate(g.x, g.y);
       ctx.rotate(g.rotation);
       ctx.strokeStyle = g.color;
       ctx.fillStyle = g.color;
-      ctx.lineWidth = 1;
+      ctx.lineWidth = isLight ? 1.4 : 1;
       ctx.globalAlpha = alpha;
 
       // base circle
@@ -146,10 +155,12 @@ export function ParticleBackground() {
       ctx.globalAlpha = 1;
     }
 
-    function drawBelts() {
-      const p = palette(themeRef.current);
-      ctx.lineWidth = 1;
-      ctx.setLineDash([2, 6]);
+    // Picks which gear pairs to connect: nearest pairs first, skipping any pair
+    // where either gear already has MAX_LINKS_PER_GEAR links. That degree cap is
+    // what turns the result into short zigzag chains of a few gears rather than
+    // a dense web connecting everything within range.
+    function pickNetworkEdges(): [Gear, Gear][] {
+      const candidates: { i: number; j: number; dist: number }[] = [];
       for (let i = 0; i < gears.length; i++) {
         for (let j = i + 1; j < gears.length; j++) {
           const a = gears[i];
@@ -157,18 +168,75 @@ export function ParticleBackground() {
           const dx = a.x - b.x;
           const dy = a.y - b.y;
           const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist >= BELT_DIST) continue;
-          const alpha = (1 - dist / BELT_DIST) * 0.28 * Math.min(1, a.life) * Math.min(1, b.life);
-          ctx.globalAlpha = alpha;
-          ctx.strokeStyle = p.belt;
-          ctx.beginPath();
-          ctx.moveTo(a.x, a.y);
-          ctx.lineTo(b.x, b.y);
-          ctx.stroke();
+          if (dist < BELT_DIST) candidates.push({ i, j, dist });
         }
       }
+      candidates.sort((e1, e2) => e1.dist - e2.dist);
+
+      const degree = new Array(gears.length).fill(0);
+      const edges: [Gear, Gear][] = [];
+      for (const e of candidates) {
+        if (degree[e.i] >= MAX_LINKS_PER_GEAR || degree[e.j] >= MAX_LINKS_PER_GEAR) continue;
+        degree[e.i]++;
+        degree[e.j]++;
+        edges.push([gears[e.i], gears[e.j]]);
+      }
+      return edges;
+    }
+
+    function drawBelts() {
+      const p = palette(themeRef.current);
+      const isLight = themeRef.current === "light";
+      ctx.lineWidth = isLight ? 2 : 1.6;
+      ctx.lineCap = "round";
+      // A near-zero dash with a round cap draws as a string of dots rather than
+      // short dashes.
+      ctx.setLineDash([0.5, 8]);
+      for (const [a, b] of pickNetworkEdges()) {
+        const dx = a.x - b.x;
+        const dy = a.y - b.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        // Floor so connections stay legible near the far edge of range instead of fading to
+        // near-invisible right before disappearing.
+        const proximity = Math.max(0.55, 1 - dist / BELT_DIST);
+        const alpha = proximity * (isLight ? 0.75 : 0.6) * Math.min(1, a.life) * Math.min(1, b.life);
+        ctx.globalAlpha = alpha;
+        ctx.strokeStyle = p.belt;
+        ctx.beginPath();
+        ctx.moveTo(a.x, a.y);
+        ctx.lineTo(b.x, b.y);
+        ctx.stroke();
+      }
       ctx.setLineDash([]);
+      ctx.lineCap = "butt";
       ctx.globalAlpha = 1;
+    }
+
+    // Gears spawn/drift independently with no awareness of each other, so left unchecked
+    // they can visually overlap. Nudge overlapping pairs apart each frame — same O(n^2)
+    // scale as the belt-distance check above, trivial at this gear count.
+    function resolveOverlaps() {
+      for (let i = 0; i < gears.length; i++) {
+        for (let j = i + 1; j < gears.length; j++) {
+          const a = gears[i];
+          const b = gears[j];
+          const dx = b.x - a.x;
+          const dy = b.y - a.y;
+          const dist = Math.sqrt(dx * dx + dy * dy) || 0.0001;
+          // radius * 1.22 matches the tooth tips drawGear() draws out to (toothLen
+          // = radius * 0.22) — using bare radius here let teeth visually overlap
+          // even when the pitch circles themselves cleared each other.
+          const minDist = a.radius * 1.22 + b.radius * 1.22 + 10;
+          if (dist >= minDist) continue;
+          const push = (minDist - dist) / 2;
+          const nx = dx / dist;
+          const ny = dy / dist;
+          a.x -= nx * push;
+          a.y -= ny * push;
+          b.x += nx * push;
+          b.y += ny * push;
+        }
+      }
     }
 
     function renderFrame() {
@@ -205,10 +273,15 @@ export function ParticleBackground() {
         }
       }
 
+      resolveOverlaps();
       renderFrame();
     }
 
     sizeAndSeed();
+    // A couple of passes so an initially-clustered spawn (fully random positions) settles
+    // apart even for prefers-reduced-motion users, whose scene renders once and never ticks.
+    resolveOverlaps();
+    resolveOverlaps();
     renderFrame();
     if (!reduced) raf = requestAnimationFrame(tick);
 

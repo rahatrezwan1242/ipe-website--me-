@@ -9,7 +9,7 @@ export default function CurriculumPage() {
     <Link href="/" className="inline-flex items-center gap-2 text-xs text-muted-foreground hover:text-foreground"><ArrowLeft className="h-3.5 w-3.5"/> Back home</Link>
     <DownloadCurriculum />
   </div>
-  <div className="grid gap-10 lg:grid-cols-[.8fr_1.2fr]">
+  <div className="grid gap-10 lg:grid-cols-[.7fr_1.3fr]">
    <div className="lg:sticky lg:top-28 lg:h-fit">
     <p className="font-mono text-[10px] uppercase tracking-[.28em] text-course-theory">The IPE roadmap</p>
     <h1 className="mt-3 text-5xl font-semibold tracking-tight text-foreground">Four years.<br/><span className="text-muted-foreground">One system.</span></h1>

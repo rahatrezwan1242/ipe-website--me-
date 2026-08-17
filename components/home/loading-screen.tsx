@@ -1,24 +1,29 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import { motion } from "motion/react";
 
 import { HOME } from "@/lib/home-palette";
+import { Typewriter } from "./typewriter";
 
 const SESSION_KEY = "home-loading-seen";
-const AUTO_DELAY = 1800;
+const AUTO_DELAY = 2600;
 const EXIT_DURATION = 0.8;
-const GATE_EASE = [0.76, 0, 0.24, 1] as const;
+const BOOT_TEXT = "booting IUT · IPE environment...";
 
 /**
- * Full-viewport intro: two panels ("gates") in the page's own background
- * color part down the middle to reveal the hero already sitting beneath
- * them — not a separate loading state that fades into the page, the gates
- * opening *is* the reveal. Shows once per browser session (sessionStorage).
+ * Full-viewport intro styled as a terminal boot line: a monospace prompt
+ * types itself out, a blue "OK" confirms once it lands (reusing the site's
+ * existing blue = success/valid semantic — see CLAUDE.md palette notes),
+ * then the official crest (public/ipe-logo.png) fades in beneath it. Holds
+ * briefly, then the whole panel fades away to reveal the hero already
+ * sitting beneath it. Shows once per browser session (sessionStorage).
  */
 export function LoadingScreen() {
   const [visible, setVisible] = useState(true);
   const [exiting, setExiting] = useState(false);
+  const [booted, setBooted] = useState(false);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -44,75 +49,52 @@ export function LoadingScreen() {
   if (!visible) return null;
 
   return (
-    <div
+    <motion.div
       onClick={finish}
       aria-hidden
+      animate={{ opacity: exiting ? 0 : 1 }}
+      transition={{ duration: EXIT_DURATION }}
       // z-105: HomeNavbar is also z-100 and mounts after this in the DOM, so
-      // an equal z-index would let it win the stacking tie and poke through
-      // the gates — unlike the old version, this one no longer keeps page
-      // content at opacity:0 underneath, so stacking order alone must hide it.
-      className="fixed inset-0 z-105 cursor-pointer overflow-hidden"
+      // an equal z-index would let it win the stacking tie and poke through —
+      // stacking order alone must hide it since content underneath is never
+      // kept at opacity:0.
+      className="fixed inset-0 z-105 flex cursor-pointer flex-col items-center justify-center gap-6"
+      style={{ background: HOME.bgBase, fontFamily: "var(--font-jetbrains)" }}
     >
-      <motion.div
-        initial={false}
-        animate={{ x: exiting ? "-100%" : "0%" }}
-        transition={{ duration: EXIT_DURATION, ease: GATE_EASE }}
-        className="absolute inset-y-0 left-0 flex w-1/2 justify-end"
-        style={{ background: HOME.bgBase }}
-      >
-        <div
-          className="h-full w-px"
-          style={{
-            background: `linear-gradient(to bottom, transparent, color-mix(in oklab, ${HOME.accentTeal} 50%, transparent), transparent)`,
-          }}
-        />
-      </motion.div>
-      <motion.div
-        initial={false}
-        animate={{ x: exiting ? "100%" : "0%" }}
-        transition={{ duration: EXIT_DURATION, ease: GATE_EASE }}
-        className="absolute inset-y-0 right-0 flex w-1/2 justify-start"
-        style={{ background: HOME.bgBase }}
-      >
-        <div
-          className="h-full w-px"
-          style={{
-            background: `linear-gradient(to bottom, transparent, color-mix(in oklab, ${HOME.accentWarm} 50%, transparent), transparent)`,
-          }}
-        />
-      </motion.div>
+      <p className="text-sm tracking-wide sm:text-base">
+        <span style={{ color: HOME.textMuted }}>&gt;&nbsp;</span>
+        <span style={{ color: HOME.textSecondary }}>
+          <Typewriter text={BOOT_TEXT} speed={22} onDone={() => setBooted(true)} />
+        </span>
+        {booted && (
+          <motion.span
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.2, delay: 0.15 }}
+            className="ml-2 font-semibold"
+            style={{ color: HOME.accentTeal }}
+          >
+            OK
+          </motion.span>
+        )}
+      </p>
 
-      <motion.div
-        animate={{ opacity: exiting ? 0 : 1 }}
-        transition={{ duration: 0.25 }}
-        className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center gap-4"
-      >
-        <motion.p
-          initial={{ opacity: 0, y: 8 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.15 }}
-          className="text-xs uppercase tracking-[0.3em]"
-          style={{ fontFamily: "var(--font-figtree)", color: HOME.textMuted }}
-        >
-          IUT · Dept. of Industrial &amp; Production Engineering
-        </motion.p>
-        <motion.h1
-          initial={{ opacity: 0, scale: 0.96 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
-          className="text-5xl font-bold tracking-tight sm:text-6xl"
-          style={{ fontFamily: "var(--font-cormorant)", color: HOME.textPrimary }}
-        >
-          IUT IPE
-        </motion.h1>
+      {booted && (
         <motion.div
-          initial={{ width: 0 }}
-          animate={{ width: 160 }}
-          transition={{ duration: 1.1, delay: 0.5, ease: "easeInOut" }}
-          className="mt-2 h-px"
-          style={{ background: HOME.accentPurple }}
-        />
-      </motion.div>
-    </div>
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.5, delay: 0.3, ease: "easeOut" }}
+        >
+          <Image
+            src="/ipe-logo.png"
+            alt="IUT IPE crest"
+            width={640}
+            height={640}
+            priority
+            className="h-24 w-24 object-contain drop-shadow-[0_8px_30px_rgba(0,0,0,0.45)] sm:h-32 sm:w-32"
+          />
+        </motion.div>
+      )}
+    </motion.div>
   );
 }

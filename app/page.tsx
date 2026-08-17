@@ -1,5 +1,4 @@
-import { HOME_FONT_VARS } from "@/lib/home-fonts";
-import { HOME } from "@/lib/home-palette";
+import { HOME, HOME_FONT_VARS } from "@/lib/home-palette";
 import { HomeShell } from "@/components/home/home-shell";
 import { HomeNavbar } from "@/components/home/home-navbar";
 import { Hero } from "@/components/home/hero";

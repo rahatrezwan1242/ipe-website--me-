@@ -1,29 +1,20 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { motion } from "motion/react";
 
 import { HOME } from "@/lib/home-palette";
+import { useTheme } from "@/components/theme-provider";
 import { Typewriter } from "./typewriter";
-
-const NOISE_BG = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`;
-
-// Fixed (non-random) scatter points so server/client markup match exactly.
-const SCATTER_POINTS = [
-  [4, 92], [12, 84], [8, 70], [20, 78], [26, 62], [18, 55], [34, 58],
-  [40, 46], [30, 40], [46, 38], [52, 30], [44, 24], [58, 26], [64, 16],
-  [56, 12], [70, 10], [76, 4], [68, 20],
-];
-
-// Fixed heights so server/client markup match exactly.
-const HISTOGRAM_BARS = [18, 34, 52, 74, 96, 68, 44, 26, 14];
 
 const PARAGRAPH = `A shared space for the Department of Industrial & Production Engineering — memories, milestones, and the people who made them.
 This is our story, and it's still being written.`;
 
 export function Hero() {
   const [typedDone, setTypedDone] = useState(false);
+  const { theme } = useTheme();
 
   return (
     <section
@@ -31,82 +22,24 @@ export function Hero() {
       className="relative flex h-screen shrink-0 snap-start items-center overflow-hidden"
       style={{ background: HOME.bgBase }}
     >
-      {/* Noise grain */}
-      <div
-        aria-hidden
-        className="absolute inset-0 opacity-[0.03]"
-        style={{ backgroundImage: NOISE_BG }}
+      <Image
+        src={theme === "light" ? "/homepage-hero-bg-light.webp" : "/homepage-hero-bg.webp"}
+        alt=""
+        fill
+        priority
+        sizes="100vw"
+        className="object-cover"
+        style={theme === "light" ? { opacity: 0.85 } : undefined}
       />
-      {/* Statistical dot grid */}
+      {/* Dark scrim, heaviest where the headline/paragraph/buttons sit (left side),
+          fading out by the right so the image's own detail (robot arm, chart, gauge) stays vivid. */}
       <div
         aria-hidden
         className="absolute inset-0"
         style={{
-          backgroundImage: `radial-gradient(circle, color-mix(in oklab, ${HOME.accentTeal} 8%, transparent) 1px, transparent 1px)`,
-          backgroundSize: "32px 32px",
+          background: `linear-gradient(100deg, color-mix(in oklab, ${HOME.bgBase} 94%, transparent) 0%, color-mix(in oklab, ${HOME.bgBase} 86%, transparent) 25%, color-mix(in oklab, ${HOME.bgBase} 55%, transparent) 48%, color-mix(in oklab, ${HOME.bgBase} 15%, transparent) 70%, color-mix(in oklab, ${HOME.bgBase} 5%, transparent) 100%)`,
         }}
       />
-      {/* Top-right decorative bell curve */}
-      <svg
-        aria-hidden
-        className="pointer-events-none absolute -right-24 -top-16 hidden sm:block"
-        width="600"
-        height="360"
-        viewBox="0 0 600 360"
-        fill="none"
-      >
-        <path
-          d="M0,320 C 140,320 220,20 300,20 C 380,20 460,320 600,320"
-          stroke={HOME.accentTeal}
-          strokeOpacity={0.08}
-          strokeWidth={2}
-        />
-      </svg>
-      {/* Bottom-left decorative scatter + regression line */}
-      <svg
-        aria-hidden
-        className="pointer-events-none absolute -bottom-6 -left-6 hidden sm:block"
-        width="320"
-        height="260"
-        viewBox="0 0 100 100"
-        preserveAspectRatio="none"
-        fill="none"
-      >
-        <line
-          x1="2"
-          y1="94"
-          x2="80"
-          y2="6"
-          stroke={HOME.accentWarm}
-          strokeOpacity={0.1}
-          strokeWidth={0.6}
-        />
-        {SCATTER_POINTS.map(([x, y], i) => (
-          <circle key={i} cx={x} cy={y} r={1.1} fill={HOME.accentWarm} fillOpacity={0.1} />
-        ))}
-      </svg>
-
-      {/* Small histogram, bottom-left — extends the statistical-diagram
-          language of the bell curve / scatter-regression motifs above. */}
-      <svg
-        aria-hidden
-        className="pointer-events-none absolute bottom-6 left-70 hidden lg:block"
-        width="90"
-        height="40"
-        viewBox="0 0 90 40"
-      >
-        {HISTOGRAM_BARS.map((v, i) => (
-          <rect
-            key={i}
-            x={i * 10}
-            y={40 - (v / 100) * 40}
-            width={6}
-            height={(v / 100) * 40}
-            fill={HOME.accentWarm}
-            fillOpacity={0.08}
-          />
-        ))}
-      </svg>
 
       <div className="relative z-10 w-full px-[8%] sm:px-[15%]">
         <motion.div
@@ -164,7 +97,16 @@ export function Hero() {
           <a
             href="#memories"
             className="rounded-sm px-7 py-3 text-sm font-medium transition-[filter,transform] hover:-translate-y-px hover:brightness-[1.15]"
-            style={{ fontFamily: "var(--font-figtree)", background: HOME.accentTeal, color: HOME.textPrimary }}
+            style={{
+              fontFamily: "var(--font-figtree)",
+              // Light mode only: the shared accentTeal blue reads muddy against this
+              // button's fill, so it gets its own darker navy here rather than
+              // changing --home-accent-teal (which Timeline/Representatives/Memories
+              // also rely on for their own accents). Text flips to a light tone to
+              // stay readable against the darker fill; dark mode is untouched.
+              background: theme === "light" ? "#0B2340" : HOME.accentTeal,
+              color: theme === "light" ? "#eae7f2" : HOME.textPrimary,
+            }}
           >
             Explore Memories
           </a>

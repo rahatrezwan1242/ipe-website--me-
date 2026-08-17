@@ -79,7 +79,7 @@ function SemesterRow({
             open && "rotate-90",
           )}
         />
-        <span className="font-mono text-[11px] uppercase tracking-widest text-muted-foreground">
+        <span className="shrink-0 whitespace-nowrap font-mono text-[11px] uppercase tracking-widest text-muted-foreground">
           {YEAR_WORDS[semIndex]} Semester
         </span>
         <span className="ml-auto flex flex-wrap items-center justify-end gap-x-3 gap-y-0.5 text-[11px] tabular-nums text-muted-foreground">
@@ -135,7 +135,7 @@ function YearBlock({ yearIndex }: { yearIndex: number }) {
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}
-        className="flex w-full items-center gap-3 p-4 text-left transition-colors hover:bg-muted/20"
+        className="flex w-full items-center gap-3 px-3 py-2.5 text-left transition-colors hover:bg-muted/20"
       >
         <ChevronRight
           className={cn(
@@ -143,13 +143,15 @@ function YearBlock({ yearIndex }: { yearIndex: number }) {
             open && "rotate-90",
           )}
         />
-        <GraduationCap className="h-4 w-4 text-accent/80" />
-        <h2 className="font-serif text-lg tracking-tight">
+        <GraduationCap className="h-4 w-4 shrink-0 text-accent/80" />
+        <h2 className="shrink-0 whitespace-nowrap font-serif text-lg tracking-tight">
           {YEAR_WORDS[yearIndex]} Year
         </h2>
-        <span className="ml-auto flex items-center gap-3 text-xs tabular-nums text-muted-foreground">
-          <span className="hidden sm:inline">{yearCourses} courses</span>
-          <span className="font-mono text-foreground/85">
+        {/* whitespace-nowrap on every piece so nothing can wrap even at a sub-pixel-tight
+            width — the card grid was widened a touch (app/curriculum/page.tsx) to make room. */}
+        <span className="ml-auto flex shrink-0 items-center gap-3 text-xs tabular-nums text-muted-foreground">
+          <span className="hidden whitespace-nowrap sm:inline">{yearCourses} courses</span>
+          <span className="whitespace-nowrap font-mono text-foreground/85">
             {yearCredits.toFixed(1)} cr
           </span>
         </span>

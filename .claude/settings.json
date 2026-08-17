@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(curl -s -o /dev/null -w \"homepage: %{http_code}\\\\n\" http://localhost:3000/ --max-time 8)",
+      "Bash(curl -s -o /dev/null -w \"curriculum: %{http_code}\\\\n\" http://localhost:3000/curriculum --max-time 8)",
+      "Bash(curl -s -o /dev/null -w \"light hero image: %{http_code}\\\\n\" \"http://localhost:3000/_next/image?url=%2Fhomepage-hero-bg-light.webp&w=1920&q=75\" --max-time 8)"
+    ]
+  }
+}
