@@ -14,7 +14,7 @@ import { useCgpaStore } from "@/lib/storage";
 import { buildUserContext } from "@/lib/chat-context";
 import { cn } from "@/lib/utils";
 
-export const OPEN_CHAT_EVENT = "iris:open-chat";
+export const OPEN_CHAT_EVENT = "ipe:open-chat";
 
 const SUGGESTIONS = [
   "What should I focus on in the current semester?",

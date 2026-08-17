@@ -16,7 +16,7 @@ export default function CurriculumPrintPage() {
       </div>
 
       <header className="mb-8">
-        <p className="text-xs uppercase tracking-wider text-neutral-500">Islamic University of Technology &middot; Batch 34</p>
+        <p className="text-xs uppercase tracking-wider text-neutral-500">Islamic University of Technology</p>
         <h1 className="mt-1 text-2xl font-semibold">{curriculum.program}</h1>
         <p className="mt-1 text-sm text-neutral-600">
           8 semesters &middot; {TOTAL_CREDITS.toFixed(2)} total credit hours &middot; {curriculum.optional_credits.toFixed(0)} elective credits
@@ -57,7 +57,7 @@ export default function CurriculumPrintPage() {
       ))}
 
       <footer className="mt-10 border-t border-neutral-200 pt-4 text-xs text-neutral-500">
-        IUT &middot; Industrial &amp; Production Engineering &mdash; Batch 34. Generated from the curriculum data used by this site&apos;s GPA calculator.
+        IUT &middot; Industrial &amp; Production Engineering. Generated from the curriculum data used by this site&apos;s GPA calculator.
       </footer>
     </main>
   );

@@ -7,7 +7,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
  * Persists dismissal in sessionStorage so it doesn't re-fire on the same tab.
  *
  * Usage:
- *   const { ref, show, dismiss } = useCoachmark("iris:hint:foo");
+ *   const { ref, show, dismiss } = useCoachmark("ipe:hint:foo");
  *   <section ref={ref}>{show && <Tooltip onClose={dismiss} />}</section>
  */
 export function useCoachmark<T extends HTMLElement = HTMLElement>(

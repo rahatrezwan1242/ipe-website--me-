@@ -29,7 +29,7 @@ export default function CalculatorPage() {
       </main>
 
       <footer className="border-t border-border/60 bg-background/80 pt-6 pb-20 md:py-6 text-center text-[11px] uppercase tracking-[0.15em] text-muted-foreground backdrop-blur-md">
-        IUT · Industrial &amp; Production Engineering — Batch 34
+        IUT · Industrial &amp; Production Engineering
       </footer>
     </>
   );

@@ -1,5 +1,5 @@
-# IRIS 34 — Homepage Design Specification
-> Batch 34 · Industrial & Production Engineering · IUT  
+# IUT IPE — Homepage Design Specification
+> Industrial & Production Engineering · IUT  
 > For AI agent: build section-by-section in the order described. Each section is self-contained. Do not skip details.
 > Do not change other pages like curriculum or calculator. This spec is only for the homepage (`/`).
 
@@ -60,7 +60,7 @@ An IPE-themed loading animation. Dark background (`--bg-base`). Centered layout.
 1. **Top center**: A thin horizontal line that extends left and right from center like an axis (animates in 0–400ms)
 2. **Animated histogram bars**: 7 vertical bars of varying heights rise from the axis line, staggered 80ms apart. Heights: `[40%, 65%, 85%, 100%, 80%, 55%, 30%]`. Color: `--accent-teal` at 80% opacity. Width: `28px`, gap: `10px`.
 3. **Overlaid normal curve**: An SVG `<path>` of a bell curve is drawn over the bars (stroke-dashoffset animation, color `--accent-warm`, stroke-width 2, no fill)
-4. **Below bars**: Text appears with typewriter effect — `"Initializing IRIS 34..."` — in `JetBrains Mono`, size 13px, color `--text-secondary`
+4. **Below bars**: Text appears with typewriter effect — `"Initializing IUT IPE..."` — in `JetBrains Mono`, size 13px, color `--text-secondary`
 5. **Progress line**: A thin `1px` horizontal line beneath the text fills from left to right over 2s (width: 0 → 180px), color `--accent-warm`
 
 **Exit**: Entire loading screen fades to opacity 0, then `display: none`. Main content fades in simultaneously.
@@ -69,7 +69,7 @@ An IPE-themed loading animation. Dark background (`--bg-base`). Centered layout.
 
 ## 2. Hero Section
 
-**Behavior**: Full viewport height (`100vh`). Scroll-snap target. One complete scroll or click of "Explore IRIS 34" transitions the viewport to the next section with a smooth full-page slide (scroll-snap-type: y mandatory on the outer wrapper, for Hero + Memories only).
+**Behavior**: Full viewport height (`100vh`). Scroll-snap target. One complete scroll or click of "Explore" transitions the viewport to the next section with a smooth full-page slide (scroll-snap-type: y mandatory on the outer wrapper, for Hero + Memories only).
 
 ### Background
 - Base: `--bg-base` solid
@@ -90,17 +90,17 @@ Vertically centered, left-aligned starting at ~15% from left edge.
 
 **Small label** (above heading):
 ```
-IUT · Department of Industrial & Production Engineering · Batch 34
+IUT · Department of Industrial & Production Engineering
 ```
 Font: `Figtree` 12px, letter-spacing: 0.2em, uppercase, color `--text-muted`. Has a short `--accent-warm` 1px line to its left (16px wide).
 
 **Main Heading:**
 ```
 Welcome to
-IRIS 34
+IUT IPE
 ```
 "Welcome to" — `Cormorant Garamond` 600, size: `clamp(2rem, 5vw, 4rem)`, color `--text-secondary`  
-"IRIS 34" — `Cormorant Garamond` 700, size: `clamp(3.5rem, 9vw, 7.5rem)`, color `--text-primary`, line-height 0.95
+"IUT IPE" — `Cormorant Garamond` 700, size: `clamp(3.5rem, 9vw, 7.5rem)`, color `--text-primary`, line-height 0.95
 
 Animate in: both lines fade + slide up (translateY 20px → 0) staggered 150ms, starting after loading screen.
 
@@ -110,17 +110,15 @@ A short paragraph typed character-by-character (30ms per char delay, cursor blin
 
 Text content:
 ```
-IRIS - a curated collection of learning materials and datasets for engineering education. It is intended as a pedagogical resource for IPE students.
-IRIS — a flower that blooms in many colours, reflecting the many facets of engineering education  
-reveals hidden patterns in every dimension of the world.  
-We are Batch 34, and this here's our story.
+IUT IPE - a curated collection of learning materials and datasets for engineering education. It is intended as a pedagogical resource for IPE students.
+This is our story.
 ```
 Font: `Figtree` 300, size 16px, color `--text-secondary`, max-width 480px, line-height 1.7.  
 Cursor: `|` character, blinks at 500ms interval, disappears when typing ends.
 
 **Three Buttons (row, flex, gap 16px, margin-top 40px):**
 
-1. **"Explore IRIS 34"** — Primary  
+1. **"Explore"** — Primary  
    Style: Filled rectangle, background `--accent-teal`, text `--text-primary`, font `Figtree` 500, size 14px, padding `12px 28px`, border-radius `4px`. No border. Hover: background lightens by 15% (use `filter: brightness(1.15)`), translate-Y(-1px).  
    Action: Smooth scroll to `#memories` section. Since scroll-snap is active, this will snap the next section into full view.
 
@@ -193,7 +191,7 @@ When actual images are unavailable, render styled placeholder divs with the pars
 ### Section Header (same pattern as Memories)
 - Eyebrow: `"— Milestones"`
 - Title: `"Our Timeline"`
-- Subtitle: `"Key events from the life of IRIS 34"`
+- Subtitle: `"Key events from our timeline"`
 
 ---
 
@@ -484,7 +482,7 @@ Event 2 — RIGHT — March 2025
 Event 3 — LEFT — January 2025
   Title: "New Year Gathering"
   Photos: none
-  Description: "IRIS 34 rang in 2025 together — food, laughter, and memories made."
+  Description: "IUT IPE rang in 2025 together — food, laughter, and memories made."
 
 Event 4 — RIGHT — November 2024
   Title: "Sports Day"
@@ -494,7 +492,7 @@ Event 4 — RIGHT — November 2024
 Event 5 — LEFT — September 2024
   Title: "First Day of Class"
   Photos: none
-  Description: "The journey begins. 34th batch walks into the Department of Industrial & Production Engineering."
+  Description: "The journey begins. We walk into the Department of Industrial & Production Engineering."
 ```
 
 ---
@@ -513,7 +511,7 @@ On mobile, collapse the alternating layout to a single-column layout. The spine 
 ### Section Header
 - Eyebrow: `"— Connect"`
 - Title: `"Class Representatives"`
-- Subtitle: `"Reach out to the people who speak for IRIS 34"`
+- Subtitle: `"Reach out to the people who speak for IUT IPE"`
 
 ### Layout
 A centered row of 2–3 CR cards (flex, wrap, gap 24px, justify-center).
@@ -550,11 +548,11 @@ Fill in actual names/contacts before launch.
 Two rows:
 
 **Row 1 (flex, space-between):**
-- Left: Logo text `"IRIS 34"` in `Cormorant Garamond` 700 28px, `--text-primary`, with tagline below: `"Batch 34 · IUT IPE"` in `Figtree` 12px, `--text-muted`
+- Left: Logo text `"IUT IPE"` in `Cormorant Garamond` 700 28px, `--text-primary`, with tagline below: `"Department of Industrial & Production Engineering"` in `Figtree` 12px, `--text-muted`
 - Right: Nav links — `Home · Curriculum · Calculator` — `Figtree` 13px, `--text-secondary`, gap 24px, hover `--text-primary`
 
 **Row 2 (flex, space-between, margin-top 32px, padding-top 24px, border-top `1px solid --border`):**
-- Left: `"© 2025 IRIS 34 · IUT IPE"` — `Figtree` 12px, `--text-muted`
+- Left: `"© {year} IUT IPE"` — `Figtree` 12px, `--text-muted`
 - Right: `"Designed & built by [Name]"` — same style, link underline on hover
 
 ---
@@ -567,7 +565,7 @@ other pages nnav remains unchanged, this is only for the homepage.
 **Border-bottom**: `1px solid --border` at 50% opacity  
 
 **Contents (flex, space-between, align-center):**
-- Left: `"IRIS 34"` — `Cormorant Garamond` 600, 20px, `--text-primary`
+- Left: `"IUT IPE"` — `Cormorant Garamond` 600, 20px, `--text-primary`
 - Center: Nav links — `Home · Memories · Timeline · Representatives` — `Figtree` 13px, `--text-secondary`. Active/hover: `--text-primary`, no underline — instead a `2px` bottom border `--accent-warm`
 - Right: `"Curriculum"` button — outlined style matching Hero button 2, smaller padding `8px 18px`
 

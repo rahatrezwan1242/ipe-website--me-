@@ -12,7 +12,7 @@ function downloadJson() {
   const url = URL.createObjectURL(blob);
   const a = document.createElement("a");
   a.href = url;
-  a.download = "IPE-batch34-curriculum.json";
+  a.download = "IPE-curriculum.json";
   document.body.appendChild(a);
   a.click();
   a.remove();

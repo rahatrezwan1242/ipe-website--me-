@@ -19,7 +19,7 @@ const inter = Inter({ variable: "--font-inter", subsets: ["latin"] });
 const mono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
 
 const TITLE = "IPE · IUT — Industrial & Production Engineering";
-const DESCRIPTION = "The digital home of Industrial & Production Engineering at Islamic University of Technology — curriculum, GPA/CGPA calculator, and an AI academic advisor for Batch 34.";
+const DESCRIPTION = "The digital home of Industrial & Production Engineering at Islamic University of Technology — curriculum, GPA/CGPA calculator, and an AI academic advisor.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
