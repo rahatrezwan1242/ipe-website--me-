@@ -31,7 +31,7 @@ export function Memories() {
   }
 
   return (
-    <section id="memories" className="flex h-screen shrink-0 snap-start flex-col justify-center px-6 sm:px-10" style={{ background: HOME.bgSurface }}>
+    <section id="memories" className="flex h-dvh shrink-0 snap-start flex-col justify-center px-6 sm:px-10" style={{ background: HOME.bgSurface }}>
       <div className="mx-auto w-full max-w-6xl">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
           <div>

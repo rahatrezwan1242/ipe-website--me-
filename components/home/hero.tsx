@@ -17,11 +17,20 @@ export function Hero() {
   const { theme } = useTheme();
 
   return (
-    <section id="hero" className="relative flex h-screen shrink-0 snap-start items-center overflow-hidden" style={{ background: HOME.bgBase }}>
+    <section id="hero" className="relative flex h-dvh shrink-0 snap-start items-center overflow-hidden" style={{ background: HOME.bgBase }}>
+      {/* Both theme variants stay mounted and crossfade via opacity — swapping
+          `src` outright can't be transitioned and pops instantly on toggle. */}
       <Image
-        src={theme === "light" ? "/homepage-hero-bg-light.webp" : "/homepage-hero-bg.webp"}
-        alt="" fill priority sizes="100vw" className="object-cover"
-        style={theme === "light" ? { opacity: 0.85 } : undefined}
+        src="/homepage-hero-bg.webp"
+        alt="" fill priority={theme === "dark"} sizes="100vw"
+        className="object-cover transition-opacity duration-500 ease-out"
+        style={{ opacity: theme === "dark" ? 1 : 0 }}
+      />
+      <Image
+        src="/homepage-hero-bg-light.webp"
+        alt="" fill priority={theme === "light"} sizes="100vw"
+        className="object-cover transition-opacity duration-500 ease-out"
+        style={{ opacity: theme === "light" ? 0.85 : 0 }}
       />
       {/* Dark scrim, heaviest where the headline/paragraph/buttons sit (left side),
           fading out by the right so the image's own detail (robot arm, chart, gauge) stays vivid. */}
