@@ -44,6 +44,12 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const toggle = useCallback(() => {
+    // Briefly enables a CSS transition (see .theme-transitioning in globals.css)
+    // so the color swap crossfades instead of snapping instantly.
+    const root = document.documentElement;
+    root.classList.add("theme-transitioning");
+    window.setTimeout(() => root.classList.remove("theme-transitioning"), 400);
+
     setTheme((prev) => {
       const next: Theme = prev === "dark" ? "light" : "dark";
       applyTheme(next);

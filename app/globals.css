@@ -59,6 +59,17 @@
 .dark .curriculum-accent { --accent:#8f6ba8; --ring:#8f6ba8; }
 * { box-sizing:border-box; }
 html { scrollbar-width:thin; scrollbar-color:var(--accent) transparent; }
+/* Smooths the light/dark switch (toggled via .theme-transitioning in
+   components/theme-provider.tsx) so every color/background/border on the
+   page crossfades instead of snapping instantly when .dark is toggled.
+   Scoped to the class + gated behind !important so it only overrides
+   per-component transition-* utilities during the brief window of the
+   switch, not their normal hover/interaction timing. */
+@media (prefers-reduced-motion: no-preference) {
+  html.theme-transitioning, html.theme-transitioning *, html.theme-transitioning *::before, html.theme-transitioning *::after {
+    transition: background-color .35s ease, border-color .35s ease, color .35s ease, fill .35s ease, stroke .35s ease, box-shadow .35s ease !important;
+  }
+}
 body { margin:0; background:var(--background); color:var(--foreground); font-family:var(--font-inter),sans-serif; }
 ::selection { background:var(--accent); color:var(--accent-foreground); }
 a { text-decoration:none; }
