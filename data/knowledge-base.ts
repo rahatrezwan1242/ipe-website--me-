@@ -1,15 +1,23 @@
 import { curriculum } from "@/lib/curriculum";
+import { TIMELINE_EVENTS, CLASS_REPS } from "@/data/batch";
 
 /**
- * Grounding source for the department assistant (components/department-assistant.tsx,
- * app/api/assistant/route.ts). Everything except `courses` is hand-entered department
- * data — replace the PLACEHOLDER entries with real information before this feature
- * goes live. `courses` is intentionally NOT hand-entered here: it's derived from
- * data/contents.json (the curriculum source of truth — see lib/curriculum.ts) so this
- * file never holds a second, driftable copy of course data.
+ * Grounding source for the IPE 25 assistant (components/department-assistant.tsx,
+ * app/api/assistant/route.ts). It answers about two things: IPE 25 itself (`about`,
+ * `timeline`, `representatives`) and department reference facts that are still useful
+ * to the batch (`faculty`, `courses`, `notices`, `labs`, `admission`, `contact`).
+ *
+ * `courses` is derived from data/contents.json (the curriculum source of truth — see
+ * lib/curriculum.ts); `timeline`/`representatives` are derived from data/batch.ts (the
+ * same arrays the homepage's Timeline/Representatives sections render) — neither is
+ * hand-entered here, so this file never holds a second, driftable copy of that data.
+ * Everything else here IS hand-entered department data — replace the PLACEHOLDER
+ * entries with real information before this feature goes live.
  *
  * Every hand-entered record carries `isPlaceholder: true` so the system prompt (and,
  * if useful later, the UI) can tell placeholder data from the real thing at a glance.
+ * `timeline`/`representatives` aren't individually flagged since they're real-or-empty,
+ * not placeholder text — an empty array just means that content hasn't been added yet.
  */
 
 export interface FacultyMember {
@@ -62,14 +70,27 @@ export interface KBCourse {
   semester: string;
 }
 
+export interface KBTimelineEvent {
+  date: string;
+  title: string;
+  description?: string;
+}
+
+export interface KBRepresentative {
+  name: string;
+  role: string;
+}
+
 export interface KnowledgeBase {
+  about: AboutInfo;
+  timeline: KBTimelineEvent[];
+  representatives: KBRepresentative[];
   faculty: FacultyMember[];
   courses: KBCourse[];
   notices: Notice[];
   labs: Lab[];
   admission: AdmissionInfo;
   contact: ContactInfo;
-  about: AboutInfo;
 }
 
 function coursesFromCurriculum(): KBCourse[] {
@@ -88,6 +109,13 @@ function coursesFromCurriculum(): KBCourse[] {
 }
 
 export const KB: KnowledgeBase = {
+  about: {
+    summary: "PLACEHOLDER — a short paragraph about IPE 25: how the batch came together and what this site is for.",
+    headOfDepartment: "PLACEHOLDER — Dr. Jane Doe",
+    isPlaceholder: true,
+  },
+  timeline: TIMELINE_EVENTS.map(({ date, title, description }) => ({ date, title, description })),
+  representatives: CLASS_REPS,
   faculty: [
     {
       name: "PLACEHOLDER — Dr. Jane Doe",
@@ -138,11 +166,6 @@ export const KB: KnowledgeBase = {
     departmentPhone: "PLACEHOLDER — +880-XXXX-XXXXXX",
     officeLocation: "PLACEHOLDER — building/floor/room",
     officeHours: "PLACEHOLDER — e.g. Sun–Thu, 9am–5pm",
-    isPlaceholder: true,
-  },
-  about: {
-    summary: "PLACEHOLDER — a short paragraph about the department's mission and history.",
-    headOfDepartment: "PLACEHOLDER — Dr. Jane Doe",
     isPlaceholder: true,
   },
 };

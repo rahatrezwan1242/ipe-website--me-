@@ -5,10 +5,7 @@ import { Camera, ChevronLeft, ChevronRight } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import { HOME } from "@/lib/home-palette";
-
-// Photos live in public/memories/ as `occasion_words_MM_YYYY.ext` — add
-// filenames here (same naming scheme) once real photos are available.
-const MEMORY_FILES: string[] = [];
+import { MEMORY_FILES } from "@/data/batch";
 
 function parseMemoryFilename(filename: string) {
   const base = filename.replace(/\.[^.]+$/, "");

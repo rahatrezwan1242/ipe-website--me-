@@ -74,7 +74,7 @@ export function HowItWorks() {
             </span>{" "}
             <span className="text-muted-foreground">
               The <em>Ask AI</em> button in the nav (and the comeback-strategy
-              button on this page) opens a chat grounded in the IUT IPE
+              button on this page) opens a chat grounded in the IPE
               curriculum. If you have saved grades, the advisor
               sees them and can give targeted feedback; on the Curriculum page
               it stays general instead.

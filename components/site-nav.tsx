@@ -24,8 +24,8 @@ export function SiteNav() {
  return <motion.header initial={{y:-20,opacity:0}} animate={{y:0,opacity:1}} className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur-xl">
   <div className="mx-auto flex h-18 max-w-7xl items-center justify-between px-5 lg:px-8">
    <Link href="/" className="flex items-center gap-3">
-    <Image src="/iut-logo.png" alt="IUT logo" width={36} height={36} priority className="h-9 w-9 rounded-lg border border-border object-contain bg-transparent" />
-    <div className="hidden sm:block"><p className="text-sm font-semibold tracking-tight">IUT · IPE</p><p className="font-mono text-[8px] uppercase tracking-[.22em] text-muted-foreground">Industrial & Production Engineering</p></div>
+    <Image src="/ipe-logo.png" alt="IPE crest" width={36} height={36} priority className="h-9 w-9 rounded-lg border border-border object-contain bg-transparent" />
+    <div className="hidden sm:block"><p className="text-sm font-semibold tracking-tight">IUT · IPE 25</p><p className="font-mono text-[8px] uppercase tracking-[.22em] text-muted-foreground">Industrial & Production Engineering</p></div>
    </Link>
    <nav className="hidden items-center gap-1 md:flex">{LINKS.map(l=><Link key={l.href} href={l.href} className={cn("rounded-full px-4 py-2 text-xs font-medium transition",pathname===l.href?"bg-muted text-foreground":"text-muted-foreground hover:bg-muted/50 hover:text-foreground")}>{l.label}</Link>)}</nav>
    <div className="flex items-center gap-2">

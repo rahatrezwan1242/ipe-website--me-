@@ -40,9 +40,9 @@ export function HomeNavbar() {
     >
       <div className="mx-auto flex h-18 max-w-7xl items-center justify-between px-5 lg:px-8">
         <a href="#top" className="flex items-center gap-3">
-          <Image src="/iut-logo.png" alt="IUT logo" width={36} height={36} priority className="h-9 w-9 rounded-lg border object-contain" style={{ borderColor: `color-mix(in oklab, ${HOME.border} 60%, transparent)` }} />
+          <Image src="/ipe-logo.png" alt="IPE crest" width={36} height={36} priority className="h-9 w-9 rounded-lg border object-contain" style={{ borderColor: `color-mix(in oklab, ${HOME.border} 60%, transparent)` }} />
           <div className="hidden sm:block">
-            <p className="text-sm font-semibold tracking-tight" style={{ fontFamily: "var(--font-cormorant)", color: HOME.textPrimary }}>IUT · IPE</p>
+            <p className="text-sm font-semibold tracking-tight" style={{ fontFamily: "var(--font-cormorant)", color: HOME.textPrimary }}>IUT · IPE 25</p>
             <p className="font-mono text-[8px] uppercase tracking-[.22em]" style={{ color: HOME.textMuted }}>Industrial &amp; Production Engineering</p>
           </div>
         </a>

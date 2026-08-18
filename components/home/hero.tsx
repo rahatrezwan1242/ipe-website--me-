@@ -9,7 +9,7 @@ import { HOME } from "@/lib/home-palette";
 import { useTheme } from "@/components/theme-provider";
 import { Typewriter } from "./typewriter";
 
-const PARAGRAPH = `A shared space for the Department of Industrial & Production Engineering — memories, milestones, and the people who made them.
+const PARAGRAPH = `A shared space for IPE 25 — memories, milestones, and the people who made them.
 This is our story, and it's still being written.`;
 
 export function Hero() {
@@ -31,7 +31,7 @@ export function Hero() {
         <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} className="mb-6 flex items-center gap-3">
           <span className="h-px w-4" style={{ background: HOME.accentWarm }} />
           <p className="text-xs uppercase tracking-[0.2em]" style={{ fontFamily: "var(--font-figtree)", color: HOME.textMuted }}>
-            IUT · Department of Industrial &amp; Production Engineering
+            IPE 25 · Industrial &amp; Production Engineering, IUT
           </p>
         </motion.div>
 
@@ -40,7 +40,7 @@ export function Hero() {
             Welcome to
           </motion.span>
           <motion.span initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.3 }} className="block font-bold" style={{ fontSize: "clamp(3.5rem, 9vw, 7.5rem)", color: HOME.textPrimary }}>
-            IUT IPE
+            IPE 25
           </motion.span>
         </h1>
 

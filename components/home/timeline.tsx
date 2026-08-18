@@ -5,16 +5,9 @@ import { Camera } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import { HOME } from "@/lib/home-palette";
+import { TIMELINE_EVENTS, type TimelineEvent as Event } from "@/data/batch";
 
-type Event = {
-  date: string;
-  title: string;
-  photos: string[] | null; // occasion labels for placeholder photo cells; null = no photos
-  description?: string;
-};
-
-// Add real events here (same shape) once the batch's timeline is ready.
-const EVENTS: Event[] = [];
+const EVENTS = TIMELINE_EVENTS;
 
 const SPINE_GRADIENT = `repeating-linear-gradient(to bottom, ${HOME.accentTeal} 0px, ${HOME.accentTeal} 8px, transparent 8px, transparent 16px)`;
 

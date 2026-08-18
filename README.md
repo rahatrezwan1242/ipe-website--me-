@@ -1,4 +1,4 @@
-# IUT IPE — GPA/CGPA Calculator
+# IPE 25 — GPA/CGPA Calculator
 
 Next.js 16 app with:
 

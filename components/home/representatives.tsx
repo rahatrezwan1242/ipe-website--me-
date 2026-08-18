@@ -1,9 +1,7 @@
 import { Link2, Mail, Phone } from "lucide-react";
 
 import { HOME } from "@/lib/home-palette";
-
-// Add real names/roles/contacts here once available.
-const REPS: { name: string; role: string }[] = [];
+import { CLASS_REPS as REPS } from "@/data/batch";
 
 export function Representatives() {
   return (

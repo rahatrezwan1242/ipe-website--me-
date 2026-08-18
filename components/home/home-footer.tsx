@@ -14,9 +14,9 @@ export function HomeFooter() {
       <div className="mx-auto max-w-6xl">
         <div className="flex flex-wrap items-start justify-between gap-6">
           <div>
-            <p style={{ fontFamily: "var(--font-cormorant)", fontWeight: 700, fontSize: 28, color: HOME.textPrimary }}>IUT IPE</p>
+            <p style={{ fontFamily: "var(--font-cormorant)", fontWeight: 700, fontSize: 28, color: HOME.textPrimary }}>IPE 25</p>
             <p className="mt-1 text-xs" style={{ fontFamily: "var(--font-figtree)", color: HOME.textMuted }}>
-              Department of Industrial &amp; Production Engineering
+              Industrial &amp; Production Engineering, IUT
             </p>
           </div>
 
@@ -30,7 +30,7 @@ export function HomeFooter() {
         </div>
 
         <div className="mt-8 pt-6 text-xs" style={{ borderTop: `1px solid ${HOME.border}`, fontFamily: "var(--font-figtree)", color: HOME.textMuted }}>
-          <p>© {new Date().getFullYear()} IUT IPE</p>
+          <p>© {new Date().getFullYear()} IPE 25</p>
         </div>
       </div>
     </footer>

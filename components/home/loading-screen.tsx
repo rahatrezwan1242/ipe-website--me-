@@ -2,28 +2,28 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { motion } from "motion/react";
+import { motion, useReducedMotion } from "motion/react";
 
 import { HOME } from "@/lib/home-palette";
-import { Typewriter } from "./typewriter";
 
 const SESSION_KEY = "home-loading-seen";
-const AUTO_DELAY = 2600;
-const EXIT_DURATION = 0.8;
-const BOOT_TEXT = "booting IUT · IPE environment...";
+const HOLD_DELAY = 1700;
+const EXIT_DURATION = 0.55;
+const FOCUS_EASE = [0.16, 1, 0.3, 1] as const;
+const RULE_EASE = [0.22, 1, 0.36, 1] as const;
 
 /**
- * Full-viewport intro styled as a terminal boot line: a monospace prompt
- * types itself out, a blue "OK" confirms once it lands (reusing the site's
- * existing blue = success/valid semantic — see CLAUDE.md palette notes),
- * then the official crest (public/ipe-logo.png) fades in beneath it. Holds
- * briefly, then the whole panel fades away to reveal the hero already
- * sitting beneath it. Shows once per browser session (sessionStorage).
+ * Full-viewport "focus pull" intro, ported from the Claude Design canvas
+ * "IPE Intro - 3h Final": the crest and IPE wordmark rack into focus from a
+ * blur, a rule draws under them, the subtitle tracks in, then the whole
+ * panel defocuses away to reveal the hero already sitting beneath it.
+ * Colors come from HOME (the site's actual dusk palette) rather than the
+ * mockup's placeholder gold/cream. Shows once per browser session.
  */
 export function LoadingScreen() {
   const [visible, setVisible] = useState(true);
   const [exiting, setExiting] = useState(false);
-  const [booted, setBooted] = useState(false);
+  const prefersReducedMotion = useReducedMotion();
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -31,10 +31,14 @@ export function LoadingScreen() {
       setVisible(false);
       return;
     }
-    const t = setTimeout(finish, AUTO_DELAY);
+    if (prefersReducedMotion) {
+      finish();
+      return;
+    }
+    const t = setTimeout(finish, HOLD_DELAY);
     return () => clearTimeout(t);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [prefersReducedMotion]);
 
   function finish() {
     try {
@@ -43,7 +47,7 @@ export function LoadingScreen() {
       // ignore
     }
     setExiting(true);
-    setTimeout(() => setVisible(false), EXIT_DURATION * 1000);
+    setTimeout(() => setVisible(false), prefersReducedMotion ? 0 : EXIT_DURATION * 1000);
   }
 
   if (!visible) return null;
@@ -52,29 +56,56 @@ export function LoadingScreen() {
     <motion.div
       onClick={finish}
       aria-hidden
-      animate={{ opacity: exiting ? 0 : 1 }}
-      transition={{ duration: EXIT_DURATION }}
+      animate={exiting ? { opacity: 0, filter: "blur(14px)", scale: 1.04 } : { opacity: 1, filter: "blur(0px)", scale: 1 }}
+      transition={{ duration: prefersReducedMotion ? 0 : EXIT_DURATION, ease: "easeOut" }}
       // z-105: HomeNavbar is also z-100 and mounts after this in the DOM, so an equal
       // z-index would let it win the stacking tie and poke through — stacking order
       // alone must hide it since content underneath is never kept at opacity:0.
-      className="fixed inset-0 z-105 flex cursor-pointer flex-col items-center justify-center gap-6"
-      style={{ background: HOME.bgBase, fontFamily: "var(--font-jetbrains)" }}
+      className="fixed inset-0 z-105 flex cursor-pointer flex-col items-center justify-center gap-7.5"
+      style={{ background: HOME.bgBase }}
     >
-      <p className="text-sm tracking-wide sm:text-base">
-        <span style={{ color: HOME.textMuted }}>&gt;&nbsp;</span>
-        <span style={{ color: HOME.textSecondary }}><Typewriter text={BOOT_TEXT} speed={22} onDone={() => setBooted(true)} /></span>
-        {booted && (
-          <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.2, delay: 0.15 }} className="ml-2 font-semibold" style={{ color: HOME.accentTeal }}>
-            OK
-          </motion.span>
-        )}
-      </p>
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0"
+        style={{ background: `radial-gradient(52% 58% at 50% 46%, color-mix(in oklab, ${HOME.accentWarm} 16%, transparent), transparent 70%)` }}
+      />
 
-      {booted && (
-        <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5, delay: 0.3, ease: "easeOut" }}>
-          <Image src="/ipe-logo.png" alt="IUT IPE crest" width={640} height={640} priority className="h-24 w-24 object-contain drop-shadow-[0_8px_30px_rgba(0,0,0,0.45)] sm:h-32 sm:w-32" />
-        </motion.div>
-      )}
+      <motion.div
+        initial={prefersReducedMotion ? false : { opacity: 0, filter: "blur(18px)", scale: 1.1 }}
+        animate={{ opacity: 1, filter: "blur(0px)", scale: 1 }}
+        transition={{ duration: prefersReducedMotion ? 0 : 0.6, delay: prefersReducedMotion ? 0 : 0.06, ease: FOCUS_EASE }}
+        className="relative h-18 w-18 sm:h-20.5 sm:w-20.5"
+      >
+        <Image src="/ipe-logo.png" alt="IUT IPE crest" fill priority sizes="82px" className="object-contain" />
+      </motion.div>
+
+      <motion.div
+        initial={prefersReducedMotion ? false : { opacity: 0, filter: "blur(18px)", scale: 1.1 }}
+        animate={{ opacity: 1, filter: "blur(0px)", scale: 1 }}
+        transition={{ duration: prefersReducedMotion ? 0 : 0.62, delay: prefersReducedMotion ? 0 : 0.14, ease: FOCUS_EASE }}
+        className="font-light leading-none"
+        style={{ fontFamily: "var(--font-cormorant)", fontSize: "clamp(60px, 9vw, 132px)", letterSpacing: "0.14em", textIndent: "0.14em", color: HOME.textPrimary }}
+      >
+        IPE 25
+      </motion.div>
+
+      <motion.div
+        initial={prefersReducedMotion ? false : { width: 0 }}
+        animate={{ width: 380 }}
+        transition={{ duration: prefersReducedMotion ? 0 : 0.55, delay: prefersReducedMotion ? 0 : 0.5, ease: RULE_EASE }}
+        className="h-px max-w-[70vw]"
+        style={{ background: `color-mix(in oklab, ${HOME.accentWarm} 70%, transparent)` }}
+      />
+
+      <motion.p
+        initial={prefersReducedMotion ? false : { opacity: 0, letterSpacing: "0.62em" }}
+        animate={{ opacity: 1, letterSpacing: "0.34em" }}
+        transition={{ duration: prefersReducedMotion ? 0 : 0.55, delay: prefersReducedMotion ? 0 : 0.66, ease: "easeOut" }}
+        className="m-0 text-center text-[13px] uppercase"
+        style={{ fontFamily: "var(--font-figtree)", color: HOME.textMuted }}
+      >
+        Industrial &amp; Production Engineering
+      </motion.p>
     </motion.div>
   );
 }

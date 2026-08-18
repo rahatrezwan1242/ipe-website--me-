@@ -18,10 +18,10 @@ import {
 import { cn } from "@/lib/utils";
 
 const SUGGESTIONS = [
-  "Who teaches Operations Research?",
+  "What's IPE 25's story?",
+  "Who are our class representatives?",
   "What are the lab facilities?",
-  "How do I contact the department head?",
-  "What courses are in the curriculum?",
+  "How do I contact the department?",
 ];
 
 const MAX_LENGTH = 1000;
@@ -72,10 +72,10 @@ export function DepartmentAssistant() {
         type="button"
         onClick={() => setOpen(true)}
         className="fixed bottom-5 left-5 z-40 gap-2 rounded-full shadow-lg"
-        aria-label="Open department assistant"
+        aria-label="Open IPE 25 assistant"
       >
         <Building2 className="h-4 w-4" />
-        <span className="hidden sm:inline">Department Info</span>
+        <span className="hidden sm:inline">IPE 25 Info</span>
       </Button>
 
       <Sheet open={open} onOpenChange={setOpen}>
@@ -84,10 +84,11 @@ export function DepartmentAssistant() {
           className="flex w-full max-w-md flex-col gap-0 p-0"
         >
           <SheetHeader className="gap-1 border-b border-border px-4 py-3 pr-20">
-            <SheetTitle>Department Assistant</SheetTitle>
+            <SheetTitle>IPE 25 Assistant</SheetTitle>
             <p className="text-xs text-muted-foreground">
-              Grounded in official department data — faculty, courses, labs,
-              admission, and contact info only.
+              Grounded in IPE 25&apos;s own data — our story, timeline, class reps
+              — plus department reference info like faculty, courses, labs,
+              admission, and contact.
             </p>
           </SheetHeader>
 
@@ -114,8 +115,9 @@ export function DepartmentAssistant() {
                 <div className="w-full max-w-sm space-y-4 text-center">
                   <Sparkles className="mx-auto h-6 w-6 text-accent/70" />
                   <p className="text-sm text-muted-foreground">
-                    Ask about faculty, courses, labs, admission, or how to
-                    reach the department. Bangla or English both work.
+                    Ask about IPE 25 — our story, timeline, class reps — or
+                    department basics like faculty, courses, labs and
+                    admission. Bangla or English both work.
                   </p>
                   <div className="flex flex-col gap-2 text-left">
                     {SUGGESTIONS.map((s) => (
@@ -169,7 +171,7 @@ export function DepartmentAssistant() {
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={handleKeyDown}
-                placeholder="Ask about the department… (Enter to send, Shift+Enter for a new line)"
+                placeholder="Ask about IPE 25… (Enter to send, Shift+Enter for a new line)"
                 disabled={busy}
                 rows={1}
                 maxLength={MAX_LENGTH}
@@ -189,8 +191,8 @@ export function DepartmentAssistant() {
               </Button>
             </form>
             <p className="border-t border-border px-3 py-1.5 text-[11px] text-muted-foreground">
-              AI assistant — verify important information with the department
-              office.
+              AI assistant — verify official department info with the
+              department office.
             </p>
           </div>
         </SheetContent>

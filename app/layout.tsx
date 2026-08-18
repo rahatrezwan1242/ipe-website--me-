@@ -18,22 +18,22 @@ const THEME_INIT_SCRIPT = `(function(){try{if(localStorage.getItem("ipe-theme:v1
 const inter = Inter({ variable: "--font-inter", subsets: ["latin"] });
 const mono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
 
-const TITLE = "IPE · IUT — Industrial & Production Engineering";
-const DESCRIPTION = "The digital home of Industrial & Production Engineering at Islamic University of Technology — curriculum, GPA/CGPA calculator, and an AI academic advisor.";
+const TITLE = "IPE 25 · IUT — Industrial & Production Engineering";
+const DESCRIPTION = "The digital home of IPE 25 — Industrial & Production Engineering, IUT — memories, curriculum, a GPA/CGPA calculator, and an AI advisor.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
     default: TITLE,
-    template: "%s · IPE IUT",
+    template: "%s · IPE 25",
   },
   description: DESCRIPTION,
   openGraph: {
     title: TITLE,
     description: DESCRIPTION,
     url: "/",
-    siteName: "IPE · IUT",
-    images: [{ url: "/iut-logo.png", width: 768, height: 768 }],
+    siteName: "IPE 25 · IUT",
+    images: [{ url: "/ipe-logo.png", width: 768, height: 768 }],
     locale: "en_US",
     type: "website",
   },
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     card: "summary",
     title: TITLE,
     description: DESCRIPTION,
-    images: ["/iut-logo.png"],
+    images: ["/ipe-logo.png"],
   },
   icons: {
     icon: [
